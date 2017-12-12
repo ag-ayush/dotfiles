@@ -113,7 +113,7 @@ bindsym $mod+a focus parent
 set $workspace1 "1: Web "	
 set $workspace2 "2: Work"
 set $workspace3 "3: Terminals "
-set $workspace4 "4"
+set $workspace4 "4: Slack "
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
@@ -147,6 +147,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # open specific apps in specific workspaces
 assign [class="Firefox"] $workspace1
+assign [class="Slack"] $workspace4
 #assign [class="Gnome-terminal"] $workspace3
 
 # reload the configuration file
@@ -228,7 +229,11 @@ exec firefox
 # Wallpaper
 exec_always feh --bg-fill /home/agoel/Pictures/Wallpapers/thumb-1920-558705.jpg
 
+# Gap size in px
+gaps inner 5
+gaps outer 7
+smart_borders on
 
-
+for_window [class="^.*"] border pixel 2
 
 
