@@ -52,7 +52,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 bindsym $mod+F4 kill
 
-# start rofi  (install rofi and compton)
+# start rofi  (install [rofi] and [compton])
 bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 100 -padding 100 -opacity "80" -bw 0 -bc "$base01" -bg "$base02" -fg "$base07" -hlbg "$base05" -columns 2 -font "overpass-mono-regular 18" -hlfg "#9575cd"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -132,6 +132,8 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -149,6 +151,14 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="Firefox"] $workspace1
 assign [class="Slack"] $workspace4
 #assign [class="Gnome-terminal"] $workspace3
+
+# Gap size in px, install [i3-gaps]
+gaps inner 7
+gaps outer 7
+smart_borders on
+smart_gaps on
+
+for_window [class="^.*"] border pixel 2
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -191,24 +201,24 @@ bindsym $mod+r mode "resize"
 exec compton
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
-bar {
-        status_command i3status -c /etc/i3/i3status.conf 
-        tray_output primary
-	font pango: overpass-mono-regular, FontAwesome 10
-        position top
-	strip_workspace_numbers yes	
+#bar {
+#        status_command i3status -c /etc/i3/i3status.conf 
+#       tray_output primary
+#	font pango: overpass-mono-regular, FontAwesome 10
+#        position top
+#	strip_workspace_numbers yes	
 
-       	colors {
-		separator $base03
-              	background $base01
-              	statusline $base05
+#       	colors {
+#		separator $base03
+#              	background $base01
+#              	statusline $base05
 #                        border  background text
-              	focused_workspace  $base01 $base01    $base07
-              	active_workspace   $base01 $base02    $base03
-              	inactive_workspace $base01 $base01    $base03
-              	urgent_workspace   $base01 $base01    $base08
-	}
-}
+#              	focused_workspace  $base01 $base01    $base07
+#              	active_workspace   $base01 $base02    $base03
+#              	inactive_workspace $base01 $base01    $base03
+#             	urgent_workspace   $base01 $base01    $base08
+#	}
+#}
 
 bindsym $mod+shift+x exec i3lock --color "$base01"
 
@@ -224,17 +234,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Automatically start the following applications:
-exec firefox
-
-# Wallpaper
-exec_always feh --bg-fill /home/agoel/Pictures/Wallpapers/thumb-1920-558705.jpg
-
-# Gap size in px
-gaps inner 7
-gaps outer 7
-smart_borders on
-smart_gaps on
-
-for_window [class="^.*"] border pixel 2
+exec firefox 
+exec_always feh --bg-fill /home/agoel/Pictures/Wallpapers/thumb-1920-558705.jpg 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
