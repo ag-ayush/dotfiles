@@ -3,6 +3,8 @@ dot files for my rice.
 
 ## packages/dependencies required
  - `i3-gaps`
+   - `blueman-applet`
+   - `nm-applet`
  - `polybar`
    - `alsa-lib` required by `internal/volume`
    - `jsoncpp` required by `internal/i3`
