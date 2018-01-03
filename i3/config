@@ -244,7 +244,7 @@ set $shutdown notify-send "SYSTEM: Powering off..." \
  && systemctl poweroff
 
 mode "$mode_system" {
-    bindsym l      	exec $HOME/git/dotfiles/i3/lock.sh, mode "default"
+    bindsym l      	exec $HOME/git/linux/dotfiles/i3/lock.sh, mode "default"
     bindsym e      	exec i3-msg exit
     bindsym s      	exec $sleep
     bindsym q      	exec $quick_hib
