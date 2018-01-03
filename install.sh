@@ -36,6 +36,7 @@ echo "Done\n"
 echo "Adding External apt repos\n"
 sudo apt-add-repository ppa:numix/ppa
 sudo apt-add-repository ppa:papirus/papirus
+sudo add-apt-repository ppa:snwh/pulp
 
 # Updates and Upgrades
 echo "Updating system\n"
@@ -51,30 +52,32 @@ echo "Done\n"
 
 # Install Packages
 echo "Installing apt packages\n"
-install_packages vim git python3 python3-pip php spotify-client openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme 
-echo "Done\n"
 
+# Ubuntu 16.04 or less
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
+sudo add-apt-repository ppa:aguignard/ppa
+sudo apt-get update
+sudo apt-get install arc-theme xcb-util-xrm
 
-### Oh-My-Zsh ###
-# Installing Oh-My-Zsh
-echo "Installing Oh My ZSH\n"
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-echo "Done\n"
-# Installing Zsh plugins
-echo "Installing ZSH plugins\n"
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-git clone https://github.com/devinmatte/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-echo "Done\n"
-# Switch to zsh as shell
-echo "Changing Shell to ZSH\n"
-chsh -s $(which zsh)
+install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme
 echo "Done\n"
 
 
 ### polybar ###
+echo "Installing polybar & i3-gaps \n"
 ## Dependencies
-sudo apt install cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev
-## Install
+
+# polybar
+sudo apt install cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++
+
+# i3
+# Ubuntu 16.04 or less
+sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf
+sudo apt-get install libxcb-xrm-dev  xcb-util-xrm
+# Ubuntu 16.10+
+#sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake 
+
+## Install polybar
 cd $HOME/git/linux
 # clone the repository
 git clone --recursive https://github.com/jaagr/polybar
@@ -84,18 +87,7 @@ cd polybar/build
 cmake ..
 sudo make install
 
-
-### i3-gaps ###
-## Dependencies
-# Ubuntu 14.04 - 16.04
-sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf
-sudo add-apt-repository ppa:aguignard/ppa
-sudo apt-get update
-sudo apt-get install libxcb-xrm-dev  xcb-util-xrm
-# Ubuntu 16.10+
-#sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake 
-
-## Install
+## Install i3-gaps
 cd $HOME/git/linux
 # clone the repository
 git clone https://www.github.com/Airblader/i3 i3-gaps
@@ -118,6 +110,23 @@ echo "0 0,12 * * * $HOME/git/linux/dotfiles/.daily.sh" >> mycron
 sudo crontab mycron 
 rm mycron
 echo "Done\n"
+
+
+### Oh-My-Zsh ###
+# Installing Oh-My-Zsh
+echo "Installing Oh My ZSH\n"
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+echo "Done\n"
+# Installing Zsh plugins
+echo "Installing ZSH plugins\n"
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git clone https://github.com/devinmatte/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+echo "Done\n"
+# Switch to zsh as shell
+echo "Changing Shell to ZSH\n"
+chsh -s $(which zsh)
+echo "Done\n"
+
 
 ### Bye bye ###
 echo "goodbye"
