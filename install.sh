@@ -4,42 +4,42 @@
 install_packages(){
 	for var in $@
 	do
-		echo "Installing package: $var\n"
+		echo -e "Installing package: $var\n"
 		sudo apt -q install $var
-		echo "\n"
+		echo -e "\n"
 	done
 }
 
 
 ### Grab my dotfiles ###
-#echo "Downloading dotfiles\n"
+#echo -e "Downloading dotfiles\n"
 #git clone https://github.com/ag-ayush/dotfiles.git $HOME/git/linux/dotfiles
 
 
 ### Debian Packages ###
 # Grab all debian packages for common programs
-echo "Downloading .deb files\n"
+echo -e "Downloading .deb files\n"
 wget https://atom-installer.github.com/v1.23.1/atom-amd64.deb
-echo "Done\n"
+echo -e "Done\n"
 # Install all deb packages
-echo "Installing .deb packages\n"
+echo -e "Installing .deb packages\n"
 sudo dpkg -i *.deb
-echo "Done\n"
+echo -e "Done\n"
 # Remove all deb packages
-echo "Deleting .deb files\n"
+echo -e "Deleting .deb files\n"
 rm *.deb
-echo "Done\n"
+echo -e "Done\n"
 
 
 ### Other common installations ###
 # Add all needed repositories
-echo "Adding External apt repos\n"
+echo -e "Adding External apt repos\n"
 sudo apt-add-repository ppa:numix/ppa
 sudo apt-add-repository ppa:papirus/papirus
 sudo add-apt-repository ppa:snwh/pulp
 
 # Updates and Upgrades
-echo "Updating system\n"
+echo -e "Updating system\n"
 sudo apt update -q=3
 sudo apt upgrade -q=3
 sudo apt dist-upgrade -q=3
@@ -48,23 +48,23 @@ sudo apt clean -q=3
 sudo apt autoclean -q=3
 sudo apt install -f -q=3
 sudo apt install --fix-broken -q=3
-echo "Done\n"
+echo -e "Done\n"
 
 # Install Packages
-echo "Installing apt packages\n"
+echo -e "Installing apt packages\n"
 
 # Ubuntu 16.04 or less
-sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
+sudo sh -c "echo -e 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
 sudo add-apt-repository ppa:aguignard/ppa
 sudo apt-get update
 sudo apt-get install arc-theme xcb-util-xrm
 
 install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme
-echo "Done\n"
+echo -e "Done\n"
 
 
-### polybar ###
-echo "Installing polybar & i3-gaps \n"
+### polybar and i3 ###
+echo -e "Installing polybar & i3-gaps \n"
 ## Dependencies
 
 # polybar
@@ -73,7 +73,7 @@ sudo apt install cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libx
 # i3
 # Ubuntu 16.04 or less
 sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf
-sudo apt-get install libxcb-xrm-dev  xcb-util-xrm
+sudo apt install libxcb-xrm-dev
 # Ubuntu 16.10+
 #sudo apt install libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake 
 
@@ -104,29 +104,29 @@ sudo make install
 
 
 ### Setups Update Crontab ###
-echo "Installing Crontab"
+echo -e "Installing Crontab"
 touch mycron
-echo "0 0,12 * * * $HOME/git/linux/dotfiles/.daily.sh" >> mycron
+echo -e "0 0,12 * * * $HOME/git/linux/dotfiles/.daily.sh" >> mycron
 sudo crontab mycron 
 rm mycron
-echo "Done\n"
+echo -e "Done\n"
 
 
 ### Oh-My-Zsh ###
 # Installing Oh-My-Zsh
-echo "Installing Oh My ZSH\n"
+echo -e "Installing Oh My ZSH\n"
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-echo "Done\n"
+echo -e "Done\n"
 # Installing Zsh plugins
-echo "Installing ZSH plugins\n"
+echo -e "Installing ZSH plugins\n"
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 git clone https://github.com/devinmatte/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-echo "Done\n"
+echo -e "Done\n"
 # Switch to zsh as shell
-echo "Changing Shell to ZSH\n"
+echo -e "Changing Shell to ZSH\n"
 chsh -s $(which zsh)
-echo "Done\n"
+echo -e "Done\n"
 
 
 ### Bye bye ###
-echo "goodbye"
+echo -e "goodbye"
