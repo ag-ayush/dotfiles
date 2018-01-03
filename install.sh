@@ -12,8 +12,8 @@ install_packages(){
 
 
 ### Grab my dotfiles ###
-echo "Downloading dotfiles"
-git clone https://github.com/ag-ayush/dotfiles.git $HOME/git/linux/dotfiles
+#echo "Downloading dotfiles\n"
+#git clone https://github.com/ag-ayush/dotfiles.git $HOME/git/linux/dotfiles
 
 
 ### Debian Packages ###
@@ -70,6 +70,21 @@ echo "Changing Shell to ZSH\n"
 chsh -s $(which zsh)
 echo "Done\n"
 
+
+### polybar ###
+## Dependencies
+sudo apt install cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev
+## Install
+cd $HOME/git/linux
+# clone the repository
+git clone --recursive https://github.com/jaagr/polybar
+# compile & install
+mkdir polybar/build
+cd polybar/build
+cmake ..
+sudo make install
+
+
 ### i3-gaps ###
 ## Dependencies
 # Ubuntu 14.04 - 16.04
@@ -94,6 +109,7 @@ mkdir -p build && cd build/
 ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 make
 sudo make install
+
 
 ### Setups Update Crontab ###
 echo "Installing Crontab"
