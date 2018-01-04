@@ -54,7 +54,7 @@ echo -e "Done\n"
 echo -e "Installing apt packages\n"
 
 # Ubuntu 16.04 or less
-sudo sh -c "echo -e 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
+sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
 sudo add-apt-repository ppa:aguignard/ppa
 sudo apt-get update
 sudo apt-get install arc-theme xcb-util-xrm
