@@ -1,22 +1,34 @@
 #!/bin/bash
 
-### This is a function to simply print what package is being installed and then install it ###
+###############################################################################
+#
+# a function to simply print what package is being installed and then install it
+#
+###############################################################################
 install_packages(){
 	for var in $@
 	do
 		echo -e "Installing package: $var\n"
-		sudo apt -q install $var
+		sudo apt install $var
 		echo -e "\n"
 	done
 }
 
 
-### Grab my dotfiles ###
+###############################################################################
+#
+# grab my dotfiles
+#
+###############################################################################
 #echo -e "Downloading dotfiles\n"
 #git clone https://github.com/ag-ayush/dotfiles.git $HOME/git/linux/dotfiles
 
 
-### Debian Packages ###
+###############################################################################
+#
+# Debian Packages
+#
+###############################################################################
 # Grab all debian packages for common programs
 echo -e "Downloading .deb files\n"
 wget https://atom-installer.github.com/v1.23.1/atom-amd64.deb
@@ -31,7 +43,11 @@ rm *.deb
 echo -e "Done\n"
 
 
-### Other common installations ###
+###############################################################################
+#
+# Other Common Installations
+#
+###############################################################################
 # Add all needed repositories
 echo -e "Adding External apt repos\n"
 sudo apt-add-repository ppa:numix/ppa
@@ -52,31 +68,36 @@ sudo apt install -f -q=3
 sudo apt install --fix-broken -q=3
 echo -e "Done\n"
 
-# Install Packages
-echo -e "Installing apt packages\n"
-
 # Ubuntu 16.04 or less
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
 
+# Install Packages
+echo -e "Installing apt packages\n"
 install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome
 echo -e "Done\n"
 
 
-### polybar and i3 ###
+###############################################################################
+#
+# Polybar and i3
+#
+###############################################################################
 echo -e "Installing polybar & i3-gaps dependencies\n"
-## Dependencies
-
-# polybar
+###############################################################################
+# Dependencies
+###############################################################################
+## polybar
 install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++
-
-# i3
+## i3
 # Ubuntu 16.04 or less
 install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock
 # Ubuntu 16.10+
-#install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake 
+#install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock
 echo -e "Done\n"
 
-## Install polybar
+###############################################################################
+# Polybar
+###############################################################################
 echo -e "Installing polybar \n"
 cd $HOME/git/linux
 # clone the repository
@@ -90,7 +111,9 @@ sudo make install
 yes | cp -rf $HOME/git/linux/dotfiles/polybar $HOME/.config/
 echo -e "Done\n"
 
-## Install i3-gaps
+###############################################################################
+# i3-gaps
+###############################################################################
 echo -e "Installing i3-gaps \n"
 cd $HOME/git/linux
 # clone the repository
@@ -105,9 +128,26 @@ mkdir -p build && cd build/
 ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
 make
 sudo make install
+
+yes | cp -rf $HOME/git/linux/dotfiles/i3 $HOME/.config/
 echo -e "Done\n"
 
-### Setups Update Crontab ###
+
+###############################################################################
+#
+# Wallpaper
+#
+###############################################################################
+mkdir $HOME/Pictures/Wallpapers
+wget -O $HOME/Pictures/Wallpapers/tardis-abstract.jpg https://www.walldevil.com/wallpapers/a71/wallpaper-images-abstract-tardis-cartoons.jpg
+gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wallpapers/tardis-abstract.jpg
+
+
+###############################################################################
+#
+# Setups Update Crontab
+#
+###############################################################################
 echo -e "Installing Crontab"
 touch mycron
 echo -e "0 0,12 * * * $HOME/git/linux/dotfiles/.daily.sh" >> mycron
@@ -116,7 +156,11 @@ rm mycron
 echo -e "Done\n"
 
 
-### Oh-My-Zsh ###
+###############################################################################
+#
+# Oh-My-Zsh
+#
+###############################################################################
 # Installing Oh-My-Zsh
 echo -e "Installing Oh My ZSH\n"
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -132,5 +176,9 @@ chsh -s $(which zsh)
 echo -e "Done\n"
 
 
-### Bye bye ###
-echo -e "goodbye"
+###############################################################################
+#
+# Finished
+#
+###############################################################################
+echo -e "\n\nDONE DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE DONE\n\n"
