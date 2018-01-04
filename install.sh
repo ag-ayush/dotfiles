@@ -16,7 +16,7 @@ install_packages(){
 	for var in $@
 	do
 		echo -e "Installing package: $var\n"
-		sudo apt install $var
+		sudo apt -y install $var
 		echo -e "\n"
 	done
 }
