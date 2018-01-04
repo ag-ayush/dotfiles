@@ -87,10 +87,7 @@ cd polybar/build
 cmake ..
 sudo make install
 
-cd $HOME/.config
-mkdir polybar
-cd ./polybar
-yes | cp -rf $HOME/git/linux/dotfiles/ $HOME/.config/polybar
+yes | cp -rf $HOME/git/linux/dotfiles/polybar $HOME/.config/
 echo -e "Done\n"
 
 ## Install i3-gaps
