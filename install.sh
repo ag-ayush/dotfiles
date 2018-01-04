@@ -1,4 +1,11 @@
 #!/bin/bash
+###############################################################################
+#
+# Location, change based on which computer you are installing to. 
+# Some differences: polybar battery and order of items, i3 blueman applet
+#
+###############################################################################
+LOCATION="$HOME/git/linux/dotfiles/x201i"
 
 ###############################################################################
 #
@@ -18,10 +25,11 @@ install_packages(){
 ###############################################################################
 #
 # grab my dotfiles
+# currently commented because I need to get them myself in order to run this script...
 #
 ###############################################################################
 #echo -e "Downloading dotfiles\n"
-#git clone https://github.com/ag-ayush/dotfiles.git $HOME/git/linux/dotfiles
+#git clone https://github.com/ag-ayush/dotfiles.git $LOCATION
 
 
 ###############################################################################
@@ -108,7 +116,7 @@ cd polybar/build
 cmake ..
 sudo make install
 
-yes | cp -rf $HOME/git/linux/dotfiles/polybar $HOME/.config/
+yes | cp -rf $LOCATION/polybar $HOME/.config/
 echo -e "Done\n"
 
 ###############################################################################
@@ -129,7 +137,7 @@ mkdir -p build && cd build/
 make
 sudo make install
 
-yes | cp -rf $HOME/git/linux/dotfiles/i3 $HOME/.config/
+yes | cp -rf $LOCATION/i3 $HOME/.config/
 echo -e "Done\n"
 
 
