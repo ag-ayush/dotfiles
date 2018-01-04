@@ -38,6 +38,7 @@ sudo apt-add-repository ppa:numix/ppa
 sudo apt-add-repository ppa:papirus/papirus
 sudo add-apt-repository ppa:snwh/pulp
 sudo add-apt-repository ppa:aguignard/ppa
+sudo add-apt-repository ppa:george-edison55/cmake-3.x
 
 # Updates and Upgrades
 echo -e "Updating system\n"
