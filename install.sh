@@ -58,11 +58,11 @@ echo -e "Done\n"
 ###############################################################################
 # Add all needed repositories
 echo -e "Adding External apt repos\n"
-sudo apt-add-repository ppa:numix/ppa
-sudo apt-add-repository ppa:papirus/papirus
-sudo add-apt-repository ppa:snwh/pulp
-sudo add-apt-repository ppa:aguignard/ppa
-sudo add-apt-repository ppa:george-edison55/cmake-3.x
+sudo apt-add-repository -y ppa:numix/ppa
+sudo apt-add-repository -y ppa:papirus/papirus
+sudo add-apt-repository -y ppa:snwh/pulp
+sudo add-apt-repository -y ppa:aguignard/ppa
+sudo add-apt-repository -y ppa:george-edison55/cmake-3.x
 
 # Updates and Upgrades
 echo -e "Updating system\n"
