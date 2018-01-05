@@ -180,7 +180,8 @@ git clone https://github.com/devinmatte/zsh-syntax-highlighting.git $ZSH_CUSTOM/
 echo -e "Done\n"
 # Switch to zsh as shell
 echo -e "Changing Shell to ZSH\n"
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
+exit
 echo -e "Done\n"
 
 
