@@ -29,7 +29,11 @@ install_packages(){
 #
 ###############################################################################
 #echo -e "Downloading dotfiles\n"
-#git clone https://github.com/ag-ayush/dotfiles.git $LOCATION
+#mkdir $HOME/git/
+#mkdir $HOME/git/linux
+#mkdir $HOME/git/linux/dotfiles
+#cd $HOME/git/linux/dotfiles
+#git clone https://github.com/ag-ayush/dotfiles.git
 
 
 ###############################################################################
