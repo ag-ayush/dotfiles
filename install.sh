@@ -157,19 +157,6 @@ gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wa
 
 ###############################################################################
 #
-# Setups Update Crontab
-#
-###############################################################################
-echo -e "Installing Crontab"
-touch mycron
-echo -e "0 0,12 * * * $HOME/git/linux/dotfiles/.daily.sh" >> mycron
-sudo crontab mycron 
-rm mycron
-echo -e "Done\n"
-
-
-###############################################################################
-#
 # Oh-My-Zsh
 #
 ###############################################################################
