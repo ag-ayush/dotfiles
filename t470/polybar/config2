@@ -8,12 +8,12 @@
 ;=====================================================
 
 [colors]
-background = ${xrdb:color0:#000000}
+background = #192231
 background-alt = #444
-foreground = ${xrdb:color7:#F5F6F7}
+foreground = #F5F6F7
 foreground-alt = #555
-primary = ${xrdb:color4:#5294E2}
-secondary =  ${xrdb:color7:#303642}
+primary = #5294E2
+secondary =  #303642
  
 third = #407ee7
 alert = #CC575D
@@ -22,30 +22,66 @@ alert = #CC575D
 [bar/top]
 width = 100%
 height = 25
-radius = 0
-font-1 = Monaco:pixelsize=10;0
-font-0 = FontAwesome:style=Regular:pixelsize=10;0
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+font-0 = FontAwesome:style=Regular:pixelsize=10
+font-1 = Monaco:pixelsize=10
+
 background = ${colors.background}
 foreground = ${colors.foreground}
-line-size = 1
+
+underline-size = 2
+overline-size = 2
 line-color = #f00
+
 border-size = 0
 border-color = #001f0
-fixed-center = false
-padding-left = 0
+
+spacing = 0
 padding-right = 0
+module-margin-right = 4
+padding-left = 1
 module-margin-left = 1
-module-margin-right = 2
-modules-left =  script i3  
-modules-center = mpd  
-modules-right = bright separator battery separator cpu separator temperature separator date separator mpd
+
 tray-position = right
 tray-padding = 1
+
+modules-left =  powermenu i3  
+modules-center = date 
+modules-right = bright separator battery separator
+
 
 [module/separator]
 type = custom/text
 content = |
 content-foreground = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+interval = 10
+fixed-values = true
+spacing = 4
+format-mounted = <label-mounted> <bar-used>
+
+label-mounted = /
+
+bar-used-width = 30
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
 
 [module/bright]
 type = custom/script
@@ -56,7 +92,7 @@ scroll-up = light -A 5
 scroll-down = light -U 5
 interval = 10
 
-[module/script]
+[module/username]
 type = custom/script
 exec = whoami
 format=    <label>
@@ -64,127 +100,62 @@ format=    <label>
 format-prefix = "🖧 "
 format-prefix-foreground = #5b
 
-[module/mpd]
-type = internal/mpd
-master-mixer = IEC958
-format-online =   <icon-prev> <icon-stop> <toggle> <icon-next> <label-song> <label-time> <bar-progress>
-
-;format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
-label-song =  %artist% - %title%
-format-online-underline = 
-
-icon-seekb = 
-icon-play = 
-icon-stop = 
-icon-next = 
-icon-prev = 
-icon-pause = 
-icon-random = 
-icon-repeat = 
-icon-seekf = 
-bar-progress-width = 10
-#bar-progress-indicator = |
-#bar-progress-indicator = ─░─
-bar-progress-indicator =  
-#bar-progress-fill = -
-bar-progress-fill = ─
-#bar-progress-empty = -
-bar-progress-empty = ─
-label-song-maxlen = 70
-label-song-ellipsis = true
-
-[module/xkeyboard]
-type = internal/xkeyboard
-blacklist-0 =  lock
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-;format-prefix-underline = ${colors.secondary}
-
-label-layout = 
-;label-layout-underline = ${colors.secondary}
-
-label-indicator-padding = 2
-label-indicator-margin = 1
-;label-indicator-background = ${colors.secondary}
-;label-indicator-underline = ${colors.secondary}
-label-indicator-background = #e6005c
-label-indicator-underline = #e6005c
-
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %icon%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %icon%
-label-occupied-padding = 2
-
-label-urgent = %icon%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %icon%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
 [module/i3]
 type = internal/i3
-format = <label-state> <label-mode>
+; Only show workspaces defined on the same output as the bar
+; Useful if you want to show monitor specific workspaces
+; on different bars
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
 index-sort = true
+
+; Create click handler used to focus workspace
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
 wrapping-scroll = false
 
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+fuzzy-match = true
+;#########################################################
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
 
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
 
 
-[module/xbacklight]
-type = internal/xbacklight
-interval = 0.1
-format =  <label>
-label = "%percentage%"
-label-underline = 
-enable-scroll = false
-;format-underline = ${colors.primary}
+label-unfocused-padding = 2
 
+label-visible-background = ${colors.background-alt}
+label-visible-underline = label-focused-underline= ${colors.primary}
+label-visible-padding = 2
 
-[module/backlight]
-inherit = module/xbacklight
-type = internal/backlight
-interval = 0.1
-scroll-up = light -A 5
-scroll-down = light -U 5
-format =  <label>
-card = intel_backlight
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
 [module/cpu]
 type = internal/cpu
@@ -204,7 +175,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp8s0 
+interface = wlp2s0 
 interval = 1
 
 format-connected = <ramp-signal> <label-connected>

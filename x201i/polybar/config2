@@ -18,7 +18,6 @@ secondary =  ${xrdb:color7:#303642}
 third = #407ee7
 alert = #CC575D
 
-
 [bar/top]
 width = 100%
 height = 25
@@ -36,7 +35,7 @@ padding-left = 0
 padding-right = 0
 module-margin-left = 1
 module-margin-right = 2
-modules-left =  powermenu script i3  
+modules-left =  powermenu username i3  
 modules-center = date
 modules-right = battery separator
 tray-position = right
@@ -56,7 +55,7 @@ scroll-up = light -A 5
 scroll-down = light -U 5
 interval = 10
 
-[module/script]
+[module/username]
 type = custom/script
 exec = whoami
 format=    <label>

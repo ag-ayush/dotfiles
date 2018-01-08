@@ -29,6 +29,12 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
+set $background #000000
+set $foreground #F5F6F7
+set $primary #5294E2
+set $secondary #303642
+set $third #407ee7
+set $alert #CC575D
 font pango: overpass-mono-regular 10
 
 
@@ -48,7 +54,7 @@ bindsym $mod+Return 	exec $term
 bindsym $mod+Shift+q 	kill
 
 # start rofi  (install [rofi] and [compton])
-bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -font "overpass-mono-regular 18" -fullscreen -auto-select
+bindsym $mod+d exec rofi -show run -padding 50 -eh 2 -lines 9 -font "overpass-mono-regular 18" -bg "$background" -fg "$foreground" -hlfg "$secondary" -hlbg "$primary" -bc "$background" -auto-select -opacity 85
 
 # change focus
 bindsym $mod+j focus left
@@ -116,13 +122,14 @@ bindsym $mod+Shift+r restart
 ###############################################################################
 
 # Make screenshots
-bindsym Print                   exec scrot '%F--%H-%M-%S.jpg' -e 'mv $f ~/Pictures/screenshots/'
+bindsym Print exec scrot '%F--%H-%M-%S.jpg' -e 'mv $f ~/Pictures/screenshots/'
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86Tools exec 
+#bindsym XF86AudioMicMute exec
+#bindsym XF86Tools exec 
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -279,7 +286,9 @@ mode "$mode_system" {
 #             	urgent_workspace   $base01 $base01    $base08
 #	}
 #}
-
+bar{
+    i3bar_command $HOME/.config/polybar/launch.sh
+}
 ###############################################################################
 #
 # WINDOW GAPS [i3-gaps]
@@ -307,8 +316,7 @@ exec firefox
 # REFRESH
 #
 ###############################################################################
-exec_always feh --bg-fill /home/agoel/Pictures/Wallpapers/tardis-abstract.jpg 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tardis-abstract.jpg 
 exec_always nm-applet
 exec_always blueman-applet
 
