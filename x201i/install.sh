@@ -83,16 +83,18 @@ sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/
 
 # Install Packages
 echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc
+install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc scrot
 echo -e "Done\n"
 
 ###############################################################################
 #
-# Change some settings
+# Others
 #
 ###############################################################################
 # Following makes sure on lid close laptop does not sleep, useful for running servers.
 echo "HandleLidSwitch=ignore" | sudo tee --append  /etc/systemd/logind.conf
+# Screenshots dir
+mkdir $HOME/Pictures/screenshots
 
 ###############################################################################
 #
