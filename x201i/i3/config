@@ -29,6 +29,20 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
+# rofi colors
+#black
+set $bg #00000000
+set $bgalt #00000000
+set $hlbg #00000000
+#silver
+set $fgTextColor #F5F6F7
+#arch blue
+set $hlfgTextColor #5294E2
+#grayish black
+set $windowcolor #CC000000
+#red
+set $alert #26CC575D
+
 font pango: overpass-mono-regular 10
 
 
@@ -48,7 +62,11 @@ bindsym $mod+Return 	exec $term
 bindsym $mod+Shift+q 	kill
 
 # start rofi  (install [rofi] and [compton])
-bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -padding 100 -font "overpass-mono-regular 18" -fullscreen -auto-select
+	# -color-window background border color separator color
+	# -color-[normal, urgent, active] Background row, Text color, Background alt row, highlight background, highlight foreground
+bindsym $mod+d exec "rofi -show run -padding 50 -eh 2 -lines 2 -font 'overpass-mono-regular 18' \
+-color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
+-fake-transparency"
 
 # change focus
 bindsym $mod+j focus left
@@ -116,20 +134,19 @@ bindsym $mod+Shift+r restart
 ###############################################################################
 
 # Make screenshots
-bindsym Print                   exec scrot '%F--%H-%M-%S.jpg' -e 'mv $f ~/Pictures/screenshots/'
+bindsym Print exec scrot '%F--%H-%M-%S.jpg' -e 'mv $f ~/Pictures/screenshots/'
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-bindsym XF86Tools exec 
+#bindsym XF86AudioMicMute exec
+#bindsym XF86Tools exec 
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-# other
-bindsym xF86Display exec arandr
 ###############################################################################
 #
 #    Workspaces
@@ -279,7 +296,9 @@ mode "$mode_system" {
 #             	urgent_workspace   $base01 $base01    $base08
 #	}
 #}
-
+bar{
+    i3bar_command $HOME/.config/polybar/launch.sh
+}
 ###############################################################################
 #
 # WINDOW GAPS [i3-gaps]
@@ -307,8 +326,7 @@ exec firefox
 # REFRESH
 #
 ###############################################################################
-exec_always feh --bg-fill /home/agoel/Pictures/Wallpapers/tardis-abstract.jpg 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tardis-abstract.jpg 
 exec_always nm-applet
 
 ###############################################################################

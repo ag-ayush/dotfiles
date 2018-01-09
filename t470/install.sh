@@ -5,7 +5,7 @@
 # Some differences: polybar battery and order of items, i3 blueman applet
 #
 ###############################################################################
-LOCATION="$HOME/git/linux/dotfiles/x201i"
+LOCATION="$HOME/git/linux/dotfiles/t470"
 
 ###############################################################################
 #
@@ -21,7 +21,6 @@ install_packages(){
 	done
 }
 
-
 ###############################################################################
 #
 # grab my dotfiles
@@ -31,10 +30,8 @@ install_packages(){
 #echo -e "Downloading dotfiles\n"
 #mkdir $HOME/git/
 #mkdir $HOME/git/linux
-#mkdir $HOME/git/linux/dotfiles
-#cd $HOME/git/linux/dotfiles
+#cd $HOME/git/linux
 #git clone https://github.com/ag-ayush/dotfiles.git
-
 
 ###############################################################################
 #
@@ -54,7 +51,6 @@ echo -e "Deleting .deb files\n"
 rm *.deb
 echo -e "Done\n"
 
-
 ###############################################################################
 #
 # Other Common Installations
@@ -67,7 +63,7 @@ sudo apt-add-repository -y ppa:papirus/papirus
 sudo add-apt-repository -y ppa:snwh/pulp
 sudo add-apt-repository -y ppa:aguignard/ppa
 sudo add-apt-repository -y ppa:george-edison55/cmake-3.x
-
+sudo add-apt-repository -y ppa:webupd8team/java
 # Updates and Upgrades
 echo -e "Updating system\n"
 sudo apt update -q=3
@@ -85,9 +81,8 @@ sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/
 
 # Install Packages
 echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome
+install_packages neovim git python3 python3-pip php openjdk-8-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc
 echo -e "Done\n"
-
 
 ###############################################################################
 #
@@ -102,9 +97,9 @@ echo -e "Installing polybar & i3-gaps dependencies\n"
 install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++
 ## i3
 # Ubuntu 16.04 or less
-install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock
+install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
 # Ubuntu 16.10+
-#install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock
+#install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
 echo -e "Done\n"
 
 ###############################################################################
@@ -144,7 +139,6 @@ sudo make install
 yes | cp -rf $LOCATION/i3 $HOME/.config/
 echo -e "Done\n"
 
-
 ###############################################################################
 #
 # Wallpaper
@@ -153,7 +147,6 @@ echo -e "Done\n"
 mkdir $HOME/Pictures/Wallpapers
 wget -O $HOME/Pictures/Wallpapers/tardis-abstract.jpg https://www.walldevil.com/wallpapers/a71/wallpaper-images-abstract-tardis-cartoons.jpg
 gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wallpapers/tardis-abstract.jpg
-
 
 ###############################################################################
 #
@@ -175,6 +168,16 @@ sudo chsh -s $(which zsh)
 exit
 echo -e "Done\n"
 
+###############################################################################
+#
+# IntelliJ
+#
+###############################################################################
+cd $HOME/Downloads
+wget https://download.jetbrains.com/idea/ideaIC-2017.3.2.tar.gz
+sudo tar xf ideaIC-2017.3.2.tar.gz -C /opt/
+cd /opt/idea-IC-173.4127.27/bin
+./idea.sh
 
 ###############################################################################
 #
