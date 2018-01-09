@@ -1,17 +1,4 @@
 # dotfiles
 dot files for my rice.
 
-## packages/dependencies required
- - `i3-gaps`
-   - `blueman-applet`
-   - `nm-applet`
- - `polybar`
-   - `alsa-lib` required by `internal/volume`
-   - `jsoncpp` required by `internal/i3`
-   - `libmpdclient` required by `internal/mpd`
-   - `libcurl` required by `internal/github`
-   - `wireless-tools` required by `internal/network`
- - `rofi`
- - `compton`
- - `mdp`
- - `vim` or some kind of editor
+I currently have two laptops, a lenovo T470 thinkpad and a lenovo X201i thinkpad. Each one has an install script meant to work with a fresh ubuntu install. Each one also has config files for polybar and i3-gaps.
