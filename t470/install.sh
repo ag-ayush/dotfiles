@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################################################################
 #
-# Location, change based on which computer you are installing to. 
+# Location, change based on which computer you are installing to.
 # Some differences: polybar battery and order of items, i3 blueman applet
 #
 ###############################################################################
@@ -81,7 +81,7 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip php openjdk-9-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc
+install_packages neovim git python3 python3-pip php openjdk-9-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator
 echo -e "Done\n"
 
 ###############################################################################
@@ -169,6 +169,13 @@ sudo tar xf ideaIC-2017.3.2.tar.gz -C /opt/
 cd /opt/idea-IC-173.4127.27/bin
 ./idea.sh
 echo -e "done installing intelliJ\n"
+
+###############################################################################
+#
+# Terminator
+#
+###############################################################################
+yes | cp -rf $LOCATION/terminator $HOME/.config/
 
 ###############################################################################
 #
