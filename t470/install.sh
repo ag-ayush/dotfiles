@@ -81,7 +81,7 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip php openjdk-9-* arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator
+install_packages neovim git python3 python3-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot
 echo -e "Done\n"
 
 ###############################################################################
