@@ -5,7 +5,7 @@
 ###############################################################################
 
 set $mod Mod4
-set $term i3-sensible-terminal
+set $term terminator
 ###############################################################################
 #
 # Fonts, colors
@@ -29,12 +29,20 @@ set $base0D #97bbf7
 set $base0E #c0b7f9
 set $base0F #fcc09e
 
-set $background #000000
-set $foreground #F5F6F7
-set $primary #5294E2
-set $secondary #303642
-set $third #407ee7
-set $alert #CC575D
+# rofi colors
+#black
+set $bg #00000000
+set $bgalt #00000000
+set $hlbg #00000000
+#silver
+set $fgTextColor #F5F6F7
+#arch blue
+set $hlfgTextColor #5294E2
+#grayish black
+set $windowcolor #CC000000
+#red
+set $alert #26CC575D
+
 font pango: overpass-mono-regular 10
 
 
@@ -54,7 +62,11 @@ bindsym $mod+Return 	exec $term
 bindsym $mod+Shift+q 	kill
 
 # start rofi  (install [rofi] and [compton])
-bindsym $mod+d exec rofi -show run -padding 50 -eh 2 -lines 9 -font "overpass-mono-regular 18" -bg "$background" -fg "$foreground" -hlfg "$secondary" -hlbg "$primary" -bc "$background" -auto-select -opacity 85
+	# -color-window background border color separator color
+	# -color-[normal, urgent, active] Background row, Text color, Background alt row, highlight background, highlight foreground
+bindsym $mod+d exec "rofi -show run -padding 50 -eh 2 -lines 2 -font 'overpass-mono-regular 18' \
+-color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
+-fake-transparency"
 
 # change focus
 bindsym $mod+j focus left
