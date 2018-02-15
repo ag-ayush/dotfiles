@@ -31,7 +31,7 @@ install_packages(){
 #mkdir $HOME/git/
 #mkdir $HOME/git/linux
 #cd $HOME/git/linux
-#git clone https://github.com/ag-ayush/dotfiles.git
+#git clone https://github.com/axg4975/dotfiles.git
 
 ###############################################################################
 #
