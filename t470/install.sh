@@ -81,7 +81,11 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs
+
+sudo pip3 install -r $HOME/git/linux/dotfiles/requirements.txt
+
+sudo apm install markdown-preview-plus teletype
 echo -e "Done\n"
 
 ###############################################################################
@@ -91,6 +95,14 @@ echo -e "Done\n"
 ###############################################################################
 # Screenshots dir
 mkdir $HOME/Pictures/screenshots
+# Pipes.sh
+cd $HOME/git/linux
+git clone https://github.com/pipeseroni/pipes.sh.git
+cd $HOME/git/linux/pipes.sh
+sudo make install
+# thefuck
+#sudo echo 'eval $(thefuck --alias)' >> ~/.bashrc
+
 
 ###############################################################################
 #
@@ -164,9 +176,9 @@ echo -e "Added and changed wallpaper\n"
 ###############################################################################
 echo -e "installing intelliJ\n"
 cd $HOME/Downloads
-wget https://download.jetbrains.com/idea/ideaIC-2017.3.2.tar.gz
-sudo tar xf ideaIC-2017.3.2.tar.gz -C /opt/
-cd /opt/idea-IC-173.4127.27/bin
+wget https://download.jetbrains.com/idea/ideaIC-2018.1.2.tar.gz
+sudo tar xf ideaIC-2018.1.2.tar.gz -C /opt/
+cd /opt/idea-IC-181.4668.68/bin
 ./idea.sh
 echo -e "done installing intelliJ\n"
 
