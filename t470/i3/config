@@ -144,8 +144,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 #bindsym XF86Tools exec 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # other
 bindsym xF86Display exec arandr
@@ -331,6 +331,7 @@ exec firefox
 exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tardis-abstract.jpg 
 exec_always nm-applet
 exec_always blueman-applet
+exec_always start-pulseaudio-x11
 
 ###############################################################################
 #

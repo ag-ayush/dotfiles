@@ -40,7 +40,7 @@ install_packages(){
 ###############################################################################
 # Grab all debian packages for common programs
 echo -e "Downloading .deb files\n"
-wget https://atom-installer.github.com/v1.23.1/atom-amd64.deb
+wget https://atom-installer.github.com/v1.26.1/atom-amd64.deb
 echo -e "Done\n"
 # Install all deb packages
 echo -e "Installing .deb packages\n"
@@ -81,11 +81,11 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man oracle-java8-installer
 
 sudo pip3 install -r $HOME/git/linux/dotfiles/requirements.txt
 
-sudo apm install markdown-preview-plus teletype
+apm install markdown-preview-plus teletype
 echo -e "Done\n"
 
 ###############################################################################
@@ -99,6 +99,12 @@ mkdir $HOME/Pictures/screenshots
 cd $HOME/git/linux
 git clone https://github.com/pipeseroni/pipes.sh.git
 cd $HOME/git/linux/pipes.sh
+sudo make install
+# Brightness
+cd $HOME/git/linux
+git clone https://github.com/haikarainen/light.git
+cd $HOME/git/linux/light
+sudo make
 sudo make install
 # thefuck
 #sudo echo 'eval $(thefuck --alias)' >> ~/.bashrc
