@@ -61,7 +61,6 @@ echo -e "Adding External apt repos\n"
 sudo apt-add-repository -y ppa:numix/ppa
 sudo apt-add-repository -y ppa:papirus/papirus
 sudo add-apt-repository -y ppa:snwh/pulp
-sudo add-apt-repository -y ppa:aguignard/ppa
 sudo add-apt-repository -y ppa:george-edison55/cmake-3.x
 sudo add-apt-repository -y ppa:webupd8team/java
 # Updates and Upgrades
@@ -80,8 +79,8 @@ echo -e "Done\n"
 #sudo sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbuntu_16.04/ /' > /etc/apt/sources.list.d/arc-theme.list"
 
 # Install Packages
-echo -e "Installing apt packages\n"
-install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man oracle-java8-installer
+echo -e "Installing apt pip3 apm packages\n"
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman
 
 sudo pip3 install -r $HOME/git/linux/dotfiles/requirements.txt
 
@@ -120,12 +119,14 @@ echo -e "Installing polybar & i3-gaps dependencies\n"
 # Dependencies
 ###############################################################################
 ## polybar
-install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++
+install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++ 
 ## i3
 # Ubuntu 16.04 or less
 #install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
 # Ubuntu 16.10+
 install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
+## i3lock-color
+install_packages libxcb1 libxcb-util1 libpam-dev libcairo-dev libfontconfig-dev libxcb-composite0 libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libev4 libx11-xcb-dev libjpeg-dev
 echo -e "Done\n"
 
 ###############################################################################
@@ -166,6 +167,17 @@ yes | cp -rf $LOCATION/i3 $HOME/.config/
 echo -e "Done\n"
 
 ###############################################################################
+# i3lock-color
+###############################################################################
+echo -e "Installing i3lock-color \n"
+cd $HOME/git/linux
+# clone the repository
+git clone https://github.com/PandorasFox/i3lock-color.git
+cd i3lock-color
+# compile & install
+autoreconf -i && ./configure && make
+
+###############################################################################
 #
 # Wallpaper
 #
@@ -181,10 +193,12 @@ echo -e "Added and changed wallpaper\n"
 #
 ###############################################################################
 echo -e "installing intelliJ\n"
+cd $HOME
+mkdir apps
 cd $HOME/Downloads
 wget https://download.jetbrains.com/idea/ideaIC-2018.1.2.tar.gz
-sudo tar xf ideaIC-2018.1.2.tar.gz -C /opt/
-cd /opt/idea-IC-181.4668.68/bin
+sudo tar xf ideaIC-2018.1.2.tar.gz -C $HOME/apps/
+cd $HOME/apps/idea-IC-181.4668.68/bin
 ./idea.sh
 echo -e "done installing intelliJ\n"
 
