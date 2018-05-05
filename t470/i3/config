@@ -263,7 +263,7 @@ set $shutdown notify-send "SYSTEM: Powering off..." \
  && systemctl poweroff
 
 mode "$mode_system" {
-    bindsym l      	exec $HOME/.config/i3/lock.sh, mode "default"
+    bindsym l      	exec cd $HOME/git/linux/i3lock-color/ && ./lock.sh
     bindsym e      	exec i3-msg exit
     bindsym s      	exec $sleep
     bindsym q      	exec $quick_hib
@@ -328,7 +328,7 @@ exec firefox
 # REFRESH
 #
 ###############################################################################
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tardis-abstract.jpg 
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tron.png 
 exec_always nm-applet
 exec_always blueman-applet
 exec_always start-pulseaudio-x11

@@ -80,7 +80,7 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt pip3 apm packages\n"
-install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances
 
 sudo pip3 install -r $HOME/git/linux/dotfiles/requirements.txt
 
@@ -178,13 +178,26 @@ cd i3lock-color
 autoreconf -i && ./configure && make
 
 ###############################################################################
+# cli-visualizer
+###############################################################################
+echo -e "Installing i3lock-color \n"
+cd $HOME/git/linux
+# clone the repository
+git clone https://github.com/dpayne/cli-visualizer.git
+cd cli-visualizer
+# compile & install
+./install.sh
+make ENABLE_PULSE=1
+
+###############################################################################
 #
 # Wallpaper
 #
 ###############################################################################
 mkdir $HOME/Pictures/Wallpapers
 wget -O $HOME/Pictures/Wallpapers/tardis-abstract.jpg https://www.walldevil.com/wallpapers/a71/wallpaper-images-abstract-tardis-cartoons.jpg
-gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wallpapers/tardis-abstract.jpg
+wget -O $HOME/Pictures/Wallpapers/tron.png https://i.pinimg.com/originals/2b/0f/18/2b0f18e400002dc4b5123f2ef773212a.png
+gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wallpapers/tron.png
 echo -e "Added and changed wallpaper\n"
 
 ###############################################################################
