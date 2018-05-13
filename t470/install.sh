@@ -80,7 +80,7 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt pip3 apm packages\n"
-install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances texlive-full
 
 sudo pip3 install -r $HOME/git/linux/dotfiles/requirements.txt
 
