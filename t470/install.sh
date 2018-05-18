@@ -27,11 +27,12 @@ install_packages(){
 # currently commented because I need to get them myself in order to run this script...
 #
 ###############################################################################
-#echo -e "Downloading dotfiles\n"
-#mkdir $HOME/git/
-#mkdir $HOME/git/linux
-#cd $HOME/git/linux
-#git clone https://github.com/axg4975/dotfiles.git
+echo -e "Downloading dotfiles\n"
+sudo apt install git
+mkdir $HOME/git/
+mkdir $HOME/git/linux
+cd $HOME/git/linux
+git clone https://github.com/axg4975/dotfiles.git
 
 ###############################################################################
 #
