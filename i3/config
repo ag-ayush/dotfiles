@@ -5,7 +5,7 @@
 ###############################################################################
 
 set $mod Mod4
-set $term i3-sensible-terminal
+set $term terminator
 ###############################################################################
 #
 # Fonts, colors
@@ -64,7 +64,10 @@ bindsym $mod+Shift+q 	kill
 # start rofi  (install [rofi] and [compton])
 	# -color-window background border color separator color
 	# -color-[normal, urgent, active] Background row, Text color, Background alt row, highlight background, highlight foreground
-bindsym $mod+d exec "rofi -show run -padding 50 -eh 2 -lines 2 -font 'overpass-mono-regular 18' \
+bindsym $mod+d exec "rofi -show drun -show-icons -padding 45 -eh 2 -lines 3 -font 'overpass-mono-regular 14' \
+-color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
+-fake-transparency"
+bindsym $mod+q exec "rofi -show window -show-icons -padding 45 -eh 2 -lines 3 -font 'overpass-mono-regular 14' \
 -color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
 -fake-transparency"
 
@@ -144,9 +147,11 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 #bindsym XF86Tools exec 
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
+# other
+bindsym xF86Display exec arandr
 ###############################################################################
 #
 #    Workspaces
@@ -261,7 +266,7 @@ set $shutdown notify-send "SYSTEM: Powering off..." \
  && systemctl poweroff
 
 mode "$mode_system" {
-    bindsym l      	exec $HOME/.config/i3/lock.sh, mode "default"
+    bindsym l      	exec cd $HOME/git/linux/i3lock-color/ && ./lock.sh
     bindsym e      	exec i3-msg exit
     bindsym s      	exec $sleep
     bindsym q      	exec $quick_hib
@@ -319,15 +324,17 @@ hide_edge_borders both
 # STARTUP
 #
 ###############################################################################
-exec firefox
+exec firefox 
 
 ###############################################################################
 #
 # REFRESH
 #
 ###############################################################################
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tardis-abstract.jpg 
-exec_always nm-applet
+exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tron.png --no-startup-id
+exec_always nm-applet --no-startup-id
+exec_always blueman-applet --no-startup-id
+exec_always start-pulseaudio-x11 --no-startup-id
 
 ###############################################################################
 #
