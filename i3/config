@@ -13,7 +13,7 @@ set $term terminator
 ###############################################################################
 
 set $base00 #101218
-set $base01 #1f222d
+set $base01 #5294E2
 set $base02 #252936
 set $base03 #7780a1
 set $base04 #C0C5CE
@@ -64,10 +64,10 @@ bindsym $mod+Shift+q 	kill
 # start rofi  (install [rofi] and [compton])
 	# -color-window background border color separator color
 	# -color-[normal, urgent, active] Background row, Text color, Background alt row, highlight background, highlight foreground
-bindsym $mod+d exec "rofi -show drun -show-icons -padding 45 -eh 2 -lines 3 -font 'overpass-mono-regular 14' \
+bindsym $mod+d exec "rofi -show drun -show-icons -sidebar-mode -padding 45 -eh 2 -lines 3 -font 'overpass-mono-regular 14' \
 -color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
 -fake-transparency"
-bindsym $mod+q exec "rofi -show window -show-icons -padding 45 -eh 2 -lines 3 -font 'overpass-mono-regular 14' \
+bindsym $mod+q exec "rofi -show window -show-icons -sidebar-mode -padding 45 -eh 2 -lines 5 -font 'overpass-mono-regular 14' \
 -color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
 -fake-transparency"
 
@@ -159,16 +159,16 @@ bindsym xF86Display exec arandr
 ###############################################################################
 
 # workspace names
-set $workspace1 "1: Web "	
-set $workspace2 "2: Work"
-set $workspace3 "3: Terminals "
-set $workspace4 "4: Slack "
+set $workspace1 ""	
+set $workspace2 ""
+set $workspace3 ""
+set $workspace4 ""
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 "10: Music "
+set $workspace10 ""
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -199,7 +199,6 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 # open specific apps in specific workspaces
 assign [class="Firefox"] $workspace1
 assign [class="Slack"] $workspace4
-#assign [class="Gnome-terminal"] $workspace3
 
 
 ###############################################################################
@@ -210,11 +209,8 @@ assign [class="Slack"] $workspace4
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
+	
+	# vim bindings
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -325,13 +321,13 @@ hide_edge_borders both
 #
 ###############################################################################
 exec firefox 
+exec feh --bg-fill $HOME/Pictures/Wallpapers/tron.png --no-startup-id
 
 ###############################################################################
 #
 # REFRESH
 #
 ###############################################################################
-exec_always feh --bg-fill $HOME/Pictures/Wallpapers/tron.png --no-startup-id
 exec_always nm-applet --no-startup-id
 exec_always blueman-applet --no-startup-id
 exec_always start-pulseaudio-x11 --no-startup-id
@@ -341,5 +337,4 @@ exec_always start-pulseaudio-x11 --no-startup-id
 # OTHER SETTINGS
 #
 ###############################################################################
-
 focus_follows_mouse yes

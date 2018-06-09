@@ -7,6 +7,6 @@ killall -q polybar
 while pgrep -x polybar >/dev/null; do sleep 1; done
 
 # Launch top-bar
-polybar -c $HOME/.config/polybar/config2 top &
+polybar -c $HOME/.config/polybar/arc-config top &
 echo "Bars launched..."
 

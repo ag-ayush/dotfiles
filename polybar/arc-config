@@ -8,7 +8,7 @@
 ;=====================================================
 
 [colors]
-background = ##171717
+background = #171717
 background-alt = #444
 foreground = #F5F6F7
 foreground-alt = #555
@@ -48,15 +48,63 @@ module-margin-left = 1
 tray-position = right
 tray-padding = 1
 
-modules-left =  i3  
-modules-center = date
-modules-right = battery separator
+modules-left =  i3 temperature
+modules-center = date separator time-india separator time-est
+modules-right = volume pulseaudio separator bright separator battery separator
 
 
 [module/separator]
 type = custom/text
 content = |
 content-foreground = ${colors.secondary}
+
+[module/volume]
+type = internal/volume
+format-volume = <ramp-volume> <bar-volume>
+label-volume-foreground = ${colors.foreground}
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = muted
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = false
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <label-volume>
+
+label-muted = muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 [module/menu-apps]
 type = custom/menu
@@ -121,7 +169,7 @@ bar-used-empty-foreground = #444444
 
 [module/bright]
 type = custom/script
-format = <label> 
+format = <label>
 exec = light -b | cut -f1 -d"."
 label =  
 scroll-up = light -A 5
@@ -211,7 +259,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0 
+interface = wlp4s0 
 interval = 1
 
 format-connected = <ramp-signal> <label-connected>
@@ -258,7 +306,7 @@ date =  " %a, %b %d, %Y"
 ;date-alt = " %a, %b %d, %Y at %I:%M%p"
 ;date-alt = " %Y-%m-%d"
 
-time = "   %I:%M%p"
+;time = "   %I:%M%p"
 ;time-alt = %H:%M:%S
 ;time-alt = %H:%M:%S
 
@@ -267,48 +315,17 @@ format-prefix-foreground = ${colors.foreground-alt}
 ;format-underline = #407ee7
 ;format-underline = ${colors.primary}
 
-label = %date% | %time%
+label = %date%
 
+[module/time-india]
+type = custom/script
+exec = TZ=Asia/Kolkata date +"DEL: %H:%M"
+interval = 30
 
-[module/volume]
-type = internal/volume
-
-master-soundcard = hw:1
-speaker-soundcard = default
-headphone-soundcard = default
-master-mixer = IEC958
-mapped = true
-#speaker-mixer = Speaker
-#headphone-mixer = Headphone
-
-format-volume = <label-volume>
-format-volume-prefix = " "
-format-volume-underline = 
-label-volume = "%percentage%"
-;label-volume-underline = ${colors.primary}
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
-label-muted =   sound muted
-;format-muted-prefix = " "
-
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+[module/time-est]
+type = custom/script
+exec = TZ=America/New_York date +"EST: %H:%M"
+interval = 30
 
 [module/battery]
 type = internal/battery
@@ -323,7 +340,7 @@ format-charging-underline =
 #format-discharging = BAT: <label-discharging> 
 format-discharging = <ramp-capacity> <label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
-label-discharging = %percentage%% - %time%
+label-discharging = %percentage%%
 time-format = %k:%M
 
 format-full-prefix = " "
@@ -337,11 +354,10 @@ ramp-capacity-3 = 
 ramp-capacity-4 = 
 
 ramp-capacity-0-foreground = #f53c3c
-ramp-capacity-1-foreground = #bbaa99
-ramp-capacity-2-foreground = #ddccbb
-ramp-capacity-3-foreground = #ddccbb
-ramp-capacity-4-foreground = #ffffff
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-1-foreground = #ffff00
+ramp-capacity-2-foreground = #9acd32
+ramp-capacity-3-foreground = #9acd32
+ramp-capacity-4-foreground = #008000
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
@@ -398,7 +414,6 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 format-padding = 1
-
 
 
 [settings]
