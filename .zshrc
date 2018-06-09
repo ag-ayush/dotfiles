@@ -100,6 +100,7 @@ eval $(thefuck --alias)
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias cdgit="cd $HOME/git"
 alias weather="curl wttr.in/new_delhi"
+alias grayscalepdf="echo gs -sOutputFile=output.pdf -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.4 -dNOPAUSE -dBATCH file.pdf"
 
 # cowsay
 if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
