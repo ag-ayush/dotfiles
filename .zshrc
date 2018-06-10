@@ -104,6 +104,6 @@ alias grayscalepdf="echo gs -sOutputFile=output.pdf -sDEVICE=pdfwrite -sColorCon
 
 # cowsay
 if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
-    fortune -s | cowsay
-    alias cowsay="fortune | cowsay"
+    fortune -s | cowsay -f /usr/share/cowsay/cows/tux.cow
+    alias cowsay="fortune | cowsay -f /usr/share/cowsay/cows/tux.cow"
 fi
