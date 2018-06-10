@@ -4,17 +4,18 @@
 # Location
 #
 ###############################################################################
-LOCATION="$HOME/git/linux/dotfiles"
+LOCATION="$HOME/git/linux"
 
 ###############################################################################
 #
 # a function to simply print what package is being installed and then install it
+# why? because it makes it easier to see what is being installed.
 #
 ###############################################################################
 install_packages(){
 	for var in $@
 	do
-		echo -e "Installing package: $var\n"
+		echo -e "\033[0;32mInstalling package: $var\033[0m \n"
 		sudo apt -y install $var
 		echo -e "\n"
 	done
@@ -23,14 +24,13 @@ install_packages(){
 ###############################################################################
 #
 # grab my dotfiles
-# currently commented because I need to get them myself in order to run this script...
 #
 ###############################################################################
 echo -e "Downloading dotfiles\n"
 sudo apt install git
 mkdir $HOME/git/
 mkdir $HOME/git/linux
-cd $HOME/git/linux
+cd $LOCATION
 git clone https://github.com/axg4975/dotfiles.git
 
 ###############################################################################
@@ -40,7 +40,7 @@ git clone https://github.com/axg4975/dotfiles.git
 ###############################################################################
 # Grab all debian packages for common programs
 echo -e "Downloading .deb files\n"
-wget https://atom-installer.github.com/v1.26.1/atom-amd64.deb
+wget https://github.com/atom/atom/releases/download/v1.27.2/atom-amd64.deb
 echo -e "Done\n"
 # Install all deb packages
 echo -e "Installing .deb packages\n"
@@ -80,9 +80,9 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt pip3 apm packages\n"
-install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances texlive-full lxappearance zathura
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances texlive-full lxappearance zathura linux-tools-common linux-tools-generic 
 
-sudo pip3 install -r $HOME/git/linux/dotfiles/requirements.txt
+sudo pip3 install -r $LOCATION/dotfiles/requirements.txt
 
 apm install markdown-preview-plus teletype
 echo -e "Done\n"
@@ -95,14 +95,14 @@ echo -e "Done\n"
 # Screenshots dir
 mkdir $HOME/Pictures/screenshots
 # Pipes.sh
-cd $HOME/git/linux
+cd $LOCATION
 git clone https://github.com/pipeseroni/pipes.sh.git
-cd $HOME/git/linux/pipes.sh
+cd $LOCATION/pipes.sh
 sudo make install
 # Brightness
-cd $HOME/git/linux
+cd $LOCATION
 git clone https://github.com/haikarainen/light.git
-cd $HOME/git/linux/light
+cd $LOCATION/light
 sudo make
 sudo make install
 # thefuck
@@ -119,11 +119,8 @@ echo -e "Installing polybar & i3-gaps dependencies\n"
 # Dependencies
 ###############################################################################
 ## polybar
-install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++ 
+install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++ libpulse-dev
 ## i3
-# Ubuntu 16.04 or less
-#install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
-# Ubuntu 16.10+
 install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
 ## i3lock-color
 install_packages libxcb1 libxcb-util1 libpam-dev libcairo-dev libfontconfig-dev libxcb-composite0 libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libev4 libx11-xcb-dev libjpeg-dev
@@ -133,7 +130,7 @@ echo -e "Done\n"
 # Polybar
 ###############################################################################
 echo -e "Installing polybar \n"
-cd $HOME/git/linux
+cd $LOCATION
 # clone the repository
 git clone --recursive https://github.com/jaagr/polybar
 # compile & install
@@ -142,14 +139,14 @@ cd polybar/build
 cmake ..
 sudo make install
 
-yes | cp -rf $LOCATION/polybar $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/polybar $HOME/.config/
 echo -e "Done\n"
 
 ###############################################################################
 # i3-gaps
 ###############################################################################
 echo -e "Installing i3-gaps \n"
-cd $HOME/git/linux
+cd $LOCATION
 # clone the repository
 git clone https://www.github.com/Airblader/i3 i3-gaps
 cd i3-gaps
@@ -163,14 +160,14 @@ mkdir -p build && cd build/
 make
 sudo make install
 
-yes | cp -rf $LOCATION/i3 $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/i3 $HOME/.config/
 echo -e "Done\n"
 
 ###############################################################################
 # i3lock-color
 ###############################################################################
 echo -e "Installing i3lock-color \n"
-cd $HOME/git/linux
+cd $LOCATION
 # clone the repository
 git clone https://github.com/PandorasFox/i3lock-color.git
 cd i3lock-color
@@ -181,7 +178,7 @@ autoreconf -i && ./configure && make
 # cli-visualizer
 ###############################################################################
 echo -e "Installing i3lock-color \n"
-cd $HOME/git/linux
+cd $LOCATION
 # clone the repository
 git clone https://github.com/dpayne/cli-visualizer.git
 cd cli-visualizer
@@ -220,7 +217,7 @@ echo -e "done installing intelliJ\n"
 # Terminator
 #
 ###############################################################################
-yes | cp -rf $LOCATION/terminator $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/terminator $HOME/.config/
 
 ###############################################################################
 #
@@ -229,6 +226,7 @@ yes | cp -rf $LOCATION/terminator $HOME/.config/
 ###############################################################################
 # Installing Oh-My-Zsh
 echo -e "Installing Oh My ZSH\n"
+yes | cp -rf $LOCATION/dotfiles/.zshrc $HOME/
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 echo -e "Done\n"
 # Installing Zsh plugins

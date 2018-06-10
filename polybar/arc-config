@@ -48,10 +48,14 @@ module-margin-left = 1
 tray-position = right
 tray-padding = 1
 
-modules-left =  i3 temperature
+modules-left =  i3
 modules-center = date separator time-india separator time-est
 modules-right = volume pulseaudio separator bright separator battery separator
 
+[module/cpufreq]
+type = custom/script
+exec = cpupower frequency-info -fm | grep -oP '(?<=frequency: )([^ ]+ [^ ]+)'
+interval = 2
 
 [module/separator]
 type = custom/text
