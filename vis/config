@@ -88,4 +88,4 @@ visualizer.spectrum.smoothing.mode=sgs
 #colors.override.terminal=false
 
 ##Specifies the color scheme. The color scheme must be in ~/.config/vis/colors/ directory. The default scheme is "colors".
-colors.scheme=rainbow,basic_colors
+colors.scheme=rainbow,city,pastel

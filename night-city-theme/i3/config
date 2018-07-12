@@ -10,40 +10,20 @@ set $term terminator
 #
 # Fonts, colors
 #
-###############################################################################
+###############################################################################	
 
-set $base00 #101218
-set $base01 #5294E2
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #97bbf7
-set $base0E #c0b7f9
-set $base0F #fcc09e
+set $focused #d8fbff
+set $focused-text #ffffff
 
-# rofi colors
-#black
-set $bg #00000000
-set $bgalt #00000000
-set $hlbg #00000000
-#silver
-set $fgTextColor #F5F6F7
-#arch blue
-set $hlfgTextColor #5294E2
-#grayish black
-set $windowcolor #CC000000
-#red
-set $alert #26CC575D
+set $unfocused #323844
+set $unfocused-text #ffffff
 
-font pango: overpass-mono-regular 10
+set $urgent-back #d81848
+set $urgent-text #ffffff
+
+set $indicator #fcc09e
+
+font pango: overpass-mono-regular 0
 
 
 ###############################################################################
@@ -64,12 +44,8 @@ bindsym $mod+Shift+q 	kill
 # start rofi  (install [rofi] and [compton])
 	# -color-window background border color separator color
 	# -color-[normal, urgent, active] Background row, Text color, Background alt row, highlight background, highlight foreground
-bindsym $mod+d exec "rofi -show drun -show-icons -sidebar-mode -padding 45 -eh 2 -lines 3 -font 'overpass-mono-regular 14' \
--color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
--fake-transparency"
-bindsym $mod+q exec "rofi -show window -show-icons -sidebar-mode -padding 45 -eh 2 -lines 5 -font 'overpass-mono-regular 14' \
--color-window '$windowcolor , $windowcolor , $windowcolor' -color-normal '$bg, $fgTextColor, $bgalt, $hlbg, $hlfgTextColor' \
--fake-transparency"
+bindsym $mod+d exec "rofi -show drun"
+bindsym $mod+q exec "rofi -show window"
 
 # change focus
 bindsym $mod+j focus left
@@ -110,10 +86,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -159,16 +135,16 @@ bindsym xF86Display exec arandr
 ###############################################################################
 
 # workspace names
-set $workspace1 ""	
-set $workspace2 ""
-set $workspace3 ""
-set $workspace4 ""
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 ""
+set $workspace10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -229,11 +205,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Widow Colours
-#                         border  background text    indicator
-  client.focused          $base01 $base01    $base07 $base0F
-  client.focused_inactive $base02 $base02    $base03 $base0F
-  client.unfocused        $base02 $base02    $base03 $base0F
-  client.urgent           $base02 $base08    $base00 $base0F
+#                         border  	background 	text    	indicator
+  client.focused          $focused 	$focused    	$focused-text 	$indicator
+  client.focused_inactive $unfocused 	$unfocused    	$unfocused-text $indicator
+  client.unfocused        $unfocused 	$unfocused    	$unfocused-text $indicator
+  client.urgent           $unfocused 	$urgent-back   	$urgent-text 	$indicator
 exec compton
 
 ###############################################################################
@@ -278,25 +254,6 @@ mode "$mode_system" {
 # i3BAR
 #
 ###############################################################################
-# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
-#bar {
-#        status_command i3status -c /etc/i3/i3status.conf 
-#       tray_output primary
-#	font pango: overpass-mono-regular, FontAwesome 10
-#        position top
-#	strip_workspace_numbers yes	
-
-#       	colors {
-#		separator $base03
-#              	background $base01
-#              	statusline $base05
-#                        border  background text
-#              	focused_workspace  $base01 $base01    $base07
-#              	active_workspace   $base01 $base02    $base03
-#              	inactive_workspace $base01 $base01    $base03
-#             	urgent_workspace   $base01 $base01    $base08
-#	}
-#}
 bar{
     i3bar_command $HOME/.config/polybar/launch.sh
 }
@@ -305,8 +262,8 @@ bar{
 # WINDOW GAPS [i3-gaps]
 #
 ###############################################################################
-gaps inner 5
-gaps outer 5
+gaps inner 10
+gaps outer 0
 smart_borders on
 smart_gaps on
 
@@ -321,7 +278,7 @@ hide_edge_borders both
 #
 ###############################################################################
 exec firefox 
-exec feh --bg-fill $HOME/Pictures/Wallpapers/tron.png --no-startup-id
+exec feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
 
 ###############################################################################
 #

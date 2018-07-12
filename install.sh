@@ -5,6 +5,7 @@
 #
 ###############################################################################
 LOCATION="$HOME/git/linux"
+read -p "Theme (arch-tron-theme, night-city-theme): "  THEME
 
 ###############################################################################
 #
@@ -80,11 +81,11 @@ echo -e "Done\n"
 
 # Install Packages
 echo -e "Installing apt pip3 apm packages\n"
-install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances texlive-full lxappearance zathura linux-tools-common linux-tools-generic 
+install_packages neovim git python3 python3-pip python-pip php arc-theme npm nodejs nodejs-legacy zsh papirus-icon-theme paper-icon-theme paper-cursor-theme paper-gtk-theme xcb-util-xrm fonts-font-awesome pycharm vlc terminator scrot make texlive pandoc sshfs help2man blueman libfftw3-dev libncursesw5-dev libpulse-dev glances texlive-full lxappearance zathura linux-tools-common linux-tools-generic neofetch openvpn cowsay fortunes
 
 sudo pip3 install -r $LOCATION/dotfiles/requirements.txt
 
-apm install markdown-preview-plus teletype
+apm install markdown-preview-plus teletype pdf-view latex language-latex atom-prettify
 echo -e "Done\n"
 
 ###############################################################################
@@ -121,7 +122,7 @@ echo -e "Installing polybar & i3-gaps dependencies\n"
 ## polybar
 install_packages cmake cmake-data libcairo2-dev libxcb1-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-image0-dev libxcb-randr0-dev libxcb-util0-dev libxcb-xkb-dev pkg-config python-xcbgen xcb-proto libxcb-xrm-dev i3-wm libasound2-dev libmpdclient-dev libiw-dev libcurl4-openssl-dev libxcb-cursor-dev libjsoncpp libsigc++ libpulse-dev
 ## i3
-install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh
+install_packages libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf libxcb-xrm0 libxcb-xrm-dev automake rofi compton blueman-applet nm-applet mdp i3status dmenu libxcb-xrm-dev i3lock feh pulseaudio-module-bluetooth
 ## i3lock-color
 install_packages libxcb1 libxcb-util1 libpam-dev libcairo-dev libfontconfig-dev libxcb-composite0 libxcb-composite0-dev libxcb-xinerama0 libxcb-randr0 libev4 libx11-xcb-dev libjpeg-dev
 echo -e "Done\n"
@@ -139,7 +140,7 @@ cd polybar/build
 cmake ..
 sudo make install
 
-yes | cp -rf $LOCATION/dotfiles/polybar $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/$THEME/polybar $HOME/.config/
 echo -e "Done\n"
 
 ###############################################################################
@@ -160,7 +161,7 @@ mkdir -p build && cd build/
 make
 sudo make install
 
-yes | cp -rf $LOCATION/dotfiles/i3 $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/$THEME/i3 $HOME/.config/
 echo -e "Done\n"
 
 ###############################################################################
@@ -194,7 +195,8 @@ make ENABLE_PULSE=1
 mkdir $HOME/Pictures/Wallpapers
 wget -O $HOME/Pictures/Wallpapers/tardis-abstract.jpg https://www.walldevil.com/wallpapers/a71/wallpaper-images-abstract-tardis-cartoons.jpg
 wget -O $HOME/Pictures/Wallpapers/tron.png https://i.pinimg.com/originals/2b/0f/18/2b0f18e400002dc4b5123f2ef773212a.png
-gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wallpapers/tron.png
+cp $HOME/git/linux/dotfiles/night-city-theme/minimalist-cities-romain-trystram.jpg $HOME/Pictures/Wallpapers
+gsettings set org.gnome.desktop.background picture-uri file:///$HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
 echo -e "Added and changed wallpaper\n"
 
 ###############################################################################
@@ -212,12 +214,18 @@ cd $HOME/apps/idea-IC-181.4668.68/bin
 ./idea.sh
 echo -e "done installing intelliJ\n"
 
+
 ###############################################################################
 #
-# Terminator
+# Other Files
 #
 ###############################################################################
-yes | cp -rf $LOCATION/dotfiles/terminator $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/neofetch $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/$THEME/rofi $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/vis $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/$THEME/terminator $HOME/.config/
+yes | cp -rf $LOCATION/dotfiles/.Xdefaults $HOME
+xrdb -load ~/.Xdefaults
 
 ###############################################################################
 #

@@ -1,0 +1,8 @@
+#000C141F - black w/ transparency
+#F5F6F7 - silver
+#43D9C9 - arch blue
+#CC000000 - grayish black
+#26CC575D - red
+#6FC3DF - tron-blue
+#DF7212 - tron-orange
+

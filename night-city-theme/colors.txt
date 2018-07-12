@@ -1,0 +1,13 @@
+#C6C9DB - White
+#d8fbff - Light Blue
+#48c0c0 - Sky Blue
+#141F43 - Dark Blue
+#78d878 - Green
+#FED96C - Yellow/Orange
+#BEABDE - Light Purple
+#7878c0 - Pop Purple
+#d81848 - Bright Red
+#BD2D4C - Dark Red
+#323844 - Dark Gray
+#60a878 - Dark Green
+
