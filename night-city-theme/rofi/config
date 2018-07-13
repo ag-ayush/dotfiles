@@ -1,4 +1,4 @@
-rofi.modi: 		drun,window
+rofi.modi: 		drun,calc,window
 rofi.show-icons:	false
 rofi.sidebar-mode:	true
 rofi.padding:		40
@@ -6,7 +6,7 @@ rofi.eh:		2
 rofi.lines:		4
 rofi.font: 		FontAwesome 14
 ! 			'background', 'border', 'separator'
-rofi.color-window:	#CC000000 , #78d878 , #CC000000 
+rofi.color-window:	#CC000000 , #78d878 , #CC000000
 ! State: 		'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
 rofi.color-normal: 	#00000000, #F5F6F7, #00000000, #00000000, #78d878
 rofi.fake-transparency:	true
@@ -20,3 +20,4 @@ rofi.location:		0
 rofi.window-format:	{c} {t}
 rofi.display-drun:	
 rofi.display-window:	
+rofi.display-calc: 
