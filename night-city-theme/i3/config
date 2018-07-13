@@ -10,7 +10,7 @@ set $term terminator
 #
 # Fonts, colors
 #
-###############################################################################	
+###############################################################################
 
 set $focused #d8fbff
 set $focused-text #ffffff
@@ -113,21 +113,21 @@ bindsym $mod+Shift+r restart
 ###############################################################################
 
 # Make screenshots
-bindsym Print exec scrot '%F--%H-%M-%S.jpg' -e 'mv $f ~/Pictures/screenshots/'
+bindsym Print exec scrot '%F--%H-%M-%S.jpg' -q 100 -e 'mv $f ~/Pictures/screenshots/'
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #bindsym XF86AudioMicMute exec
-#bindsym XF86Tools exec 
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 
 # other
-bindsym xF86Display exec arandr
+#bindsym xF86Display exec arandr
+bindsym XF86Tools exec exec arandr
 ###############################################################################
 #
 #    Workspaces
@@ -185,7 +185,7 @@ assign [class="Slack"] $workspace4
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-	
+
 	# vim bindings
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
@@ -238,7 +238,7 @@ set $shutdown notify-send "SYSTEM: Powering off..." \
  && systemctl poweroff
 
 mode "$mode_system" {
-    bindsym l      	exec cd $HOME/git/linux/i3lock-color/ && ./lock.sh
+    bindsym l      	exec $HOME/.config/i3/lock.sh
     bindsym e      	exec i3-msg exit
     bindsym s      	exec $sleep
     bindsym q      	exec $quick_hib
@@ -277,7 +277,7 @@ hide_edge_borders both
 # STARTUP
 #
 ###############################################################################
-exec firefox 
+exec firefox
 exec feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
 
 ###############################################################################

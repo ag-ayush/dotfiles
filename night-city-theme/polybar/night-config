@@ -30,14 +30,15 @@ offset-y = 0
 offset-x = 0
 
 border-size = 0
-line-size = 2
+line-size = 1
 
 ;-------------------------;
 ;          fonts          ;
 ;-------------------------;
-font-0 = FontAwesome:style=Regular:pixelsize=9
-font-1 = Inconsolata:pixelsize=10
-font-2 = overpass:pixelsize=10
+font-0 = FontAwesome5Free:style=Solid:pixelsize=9
+font-1 = FontAwesome5Brands:style=Solid:pixelsize=9
+font-2 = Inconsolata:pixelsize=11
+font-3 = overpass:pixelsize=11
 
 ;--------------------------;
 ;          colors          ;
@@ -58,16 +59,16 @@ overline-size = 2
 
 spacing = 0
 padding-right = 0
-module-margin-right = 4
-padding-left = 1
-module-margin-left = 1
+module-margin-right = 1
+padding-left = 0
+module-margin-left = 0
 
 tray-position = right
 tray-padding = 1
 
 modules-left =  i3
 modules-center = date separator time-india separator time-est
-modules-right = pulseaudio separator bright separator battery separator
+modules-right = volume separator bright separator battery separator
 
 [module/battery-combined-shell]
 ; Not working...
@@ -93,10 +94,10 @@ content-foreground = ${colors.background}
 [module/volume]
 type = internal/volume
 format-volume = <ramp-volume> <label-volume>
-format-underline = ${colors.second}
+format-volume-underline = ${colors.second}
 label-volume-foreground = ${colors.foreground}
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = 
+label-muted =
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
@@ -205,7 +206,7 @@ bar-used-empty-foreground = #444444
 [module/bright]
 type = custom/script
 format = <label>
-format-underline = ${colors.second}
+format-underline = ${colors.third}
 exec = light -b | cut -f1 -d"."
 label =  %output%%
 scroll-up = light -A 5
@@ -244,13 +245,13 @@ enable-scroll = false
 ; Default: true
 wrapping-scroll = false
 
-; Set the scroll cycle direction 
+; Set the scroll cycle direction
 ; Default: true
 reverse-scroll = false
 
-; Use fuzzy (partial) matching on labels when assigning 
+; Use fuzzy (partial) matching on labels when assigning
 ; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
+; Example: code;♚ will apply the icon to all workspaces
 ; containing 'code' in the label
 fuzzy-match = true
 ;#########################################################
@@ -259,23 +260,23 @@ fuzzy-match = true
 ;   <label-mode> (default)
 format = <label-state> <label-mode>
 
-label-mode-padding = 2
+label-mode-padding = 1
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 label-focused-background = ${colors.background-alt}
 label-focused-underline = ${colors.primary}
-label-focused-padding = 2
+label-focused-padding = 1
 
 
-label-unfocused-padding = 2
+label-unfocused-padding = 1
 
 label-visible-background = ${colors.background-alt}
 label-visible-underline = label-focused-underline= ${colors.primary}
-label-visible-padding = 2
+label-visible-padding = 1
 
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
 [module/cpu]
 type = internal/cpu
@@ -295,14 +296,14 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0 
+interface = wlp4s0
 interval = 1
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = 
+format-connected-underline =
 ;format-connected-underline = ${colors.primary}
-label-connected = %essid%   %downspeed%  %upspeed% 
-;label-connected =  :%downspeed% :%upspeed% 
+label-connected = %essid%   %downspeed%  %upspeed%
+;label-connected =  :%downspeed% :%upspeed%
 
 
 format-disconnected ="   Not Connected"
@@ -346,7 +347,7 @@ date =  "  %a, %b %d, %Y"
 ;time-alt = %H:%M:%S
 ;time-alt = %H:%M:%S
 
-format-prefix =  
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.second}
 
@@ -355,13 +356,13 @@ label = %date%
 [module/time-india]
 type = custom/script
 format-underline = ${colors.third}
-exec = TZ=Asia/Kolkata date +"%I:%M%P" 
+exec = TZ=Asia/Kolkata date +"%I:%M%P"
 interval = 30
 
 [module/time-est]
 type = custom/script
 format-underline = ${colors.fourth}
-exec = TZ=America/New_York date +"%I:%M%P" 
+exec = TZ=America/New_York date +"%I:%M%P"
 interval = 30
 
 [module/battery]
@@ -378,7 +379,7 @@ format-charging-underline = ${colors.fourth}
 format-discharging = <ramp-capacity> <label-discharging>
 label-discharging = %percentage%%
 time-format = %k:%M
-format-discharging-underline = ${colors.third}
+format-discharging-underline = ${colors.fourth}
 
 #format-full
 format-full-prefix = " "
@@ -466,4 +467,3 @@ margin-top = 4
 margin-bottom = 4
 
 ; vim:ft=dosini
-
