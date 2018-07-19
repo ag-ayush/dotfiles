@@ -3,14 +3,15 @@
 # MOD KEY and TERM
 #
 ###############################################################################
+
 set $mod Mod4
 set $term terminator
-
 ###############################################################################
 #
 # Fonts, colors
 #
 ###############################################################################
+
 set $focused #d8fbff
 set $focused-text #ffffff
 
@@ -24,6 +25,7 @@ set $indicator #fcc09e
 
 font pango: overpass-mono-regular 0
 
+
 ###############################################################################
 #
 #    DEFAULT KEYBINDINGS
@@ -34,12 +36,14 @@ font pango: overpass-mono-regular 0
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $term
+bindsym $mod+Return 	exec $term
 
 # kill focused window
 bindsym $mod+Shift+q 	kill
 
 # start rofi  (install [rofi] and [compton])
+	# -color-window background border color separator color
+	# -color-[normal, urgent, active] Background row, Text color, Background alt row, highlight background, highlight foreground
 bindsym $mod+d exec "rofi -show drun"
 bindsym $mod+q exec "rofi -show window"
 bindsym $mod+c exec "rofi -show calc"
@@ -98,7 +102,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system lock
-bindsym $mod+shift+x exec exec $HOME/.config/i3/lock.sh
+#bindsym $mod+shift+x exec i3lock --color "$base01"
 
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -178,6 +182,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 assign [class="Firefox"] $workspace1
 assign [class="Slack"] $workspace4
 
+
 ###############################################################################
 #
 #    DEFAULT MODES
@@ -211,7 +216,7 @@ bindsym $mod+r mode "resize"
   client.focused_inactive $unfocused 	$unfocused    	$unfocused-text $indicator
   client.unfocused        $unfocused 	$unfocused    	$unfocused-text $indicator
   client.urgent           $unfocused 	$urgent-back   	$urgent-text 	$indicator
-
+exec compton
 
 ###############################################################################
 #
@@ -258,20 +263,20 @@ mode "$mode_system" {
 bar{
     i3bar_command $HOME/.config/polybar/launch.sh
 }
-
 ###############################################################################
 #
 # WINDOW GAPS [i3-gaps]
 #
 ###############################################################################
-gaps inner 5
+gaps inner 10
 gaps outer 0
 smart_borders on
 smart_gaps on
 
 for_window [class="^.*"] border pixel 4
 
-#hide_edge_borders both
+hide_edge_borders both
+
 
 ###############################################################################
 #
@@ -280,7 +285,6 @@ for_window [class="^.*"] border pixel 4
 ###############################################################################
 exec firefox
 exec feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
-exec compton
 
 ###############################################################################
 #

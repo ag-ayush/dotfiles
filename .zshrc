@@ -9,13 +9,6 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="bureau"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -61,7 +54,7 @@ ZSH_THEME="bureau"
 plugins=(
   git
   command-not-found
-  debian
+  archlinux
   sudo
   web-search
 )
@@ -98,12 +91,8 @@ eval $(thefuck --alias)
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cdgit="cd $HOME/git"
 alias weather="curl wttr.in/new_delhi"
 alias grayscalepdf="echo gs -sOutputFile=output.pdf -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.4 -dNOPAUSE -dBATCH file.pdf"
+alias cowsay="fortune -s | cowsay -f /usr/share/cows/tux.cow"
 
-# cowsay
-if [ -x /usr/games/cowsay -a -x /usr/games/fortune ]; then
-    fortune -s | cowsay -f /usr/share/cowsay/cows/tux.cow
-    alias cowsay="fortune | cowsay -f /usr/share/cowsay/cows/tux.cow"
-fi
+bash$ timeto() { python -c "from datetime import date as d; print (d($1, $2, $3)) - d.today()" }
