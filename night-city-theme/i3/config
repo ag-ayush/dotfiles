@@ -279,8 +279,9 @@ for_window [class="^.*"] border pixel 4
 #
 ###############################################################################
 exec firefox
-exec feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
-exec compton
+exec --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
+exec --no-startup-id compton
+exec --no-startup-id dunst
 
 ###############################################################################
 #
