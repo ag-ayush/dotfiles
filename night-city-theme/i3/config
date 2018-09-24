@@ -98,7 +98,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system lock
-bindsym $mod+shift+x exec exec $HOME/.config/i3/lock.sh
+bindsym $mod+Shift+z exec exec $HOME/.config/i3/lock.sh
 
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -125,6 +125,9 @@ bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
 # other
 #bindsym xF86Display exec arandr
 bindsym XF86Tools exec exec arandr
+bindsym $mod+x exec xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 1366x768 --pos 0x1920 --rotate normal --output DP1 --off --output HDMI2 --mode 1920x1080 --pos 286x0 --rotate left --output HDMI1 --off --output DP2 --off && restart
+bindsym $mod+Shift+x exec xrandr --auto && restart
+# TODO: Restart polybar not all of i3, may reload i3 config file.
 
 # scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -279,9 +282,9 @@ for_window [class="^.*"] border pixel 4
 #
 ###############################################################################
 exec firefox
-exec --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
-exec --no-startup-id compton
+exec --no-startup-id compton --vsync drm
 exec --no-startup-id dunst
+exec xrandr --auto
 
 ###############################################################################
 #
@@ -291,6 +294,7 @@ exec --no-startup-id dunst
 exec_always nm-applet --no-startup-id
 exec_always blueman-applet --no-startup-id
 exec_always start-pulseaudio-x11 --no-startup-id
+exec_always --no-startup-id feh --bg-fill $HOME/Pictures/Wallpapers/minimalist-cities-romain-trystram.jpg
 
 ###############################################################################
 #

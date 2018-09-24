@@ -54,8 +54,6 @@ scroll-down = i3wm-wsprev
 ;---------------------------------;
 ;          miscellaneous          ;
 ;---------------------------------;
-monitor = ${env:MONITOR:}
-
 underline-size = 2
 overline-size = 2
 
