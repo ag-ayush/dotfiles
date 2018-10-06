@@ -1,0 +1,4 @@
+#454545 - Dark Gray
+#d0d0d0 - Off White 
+#8A0F2E - Crimson Red
+#e2e4ed - Orange

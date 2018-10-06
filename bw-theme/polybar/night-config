@@ -1,0 +1,477 @@
+;=====================================================
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[colors]
+background = #00000000
+background-alt = #444
+foreground = #e2e4ed
+foreground-alt = #555
+primary = #cb7119
+second =  #00000000
+third = #00000000
+fourth = #00000000
+fifth = #00000000
+alert = #8A0F2E
+
+
+[bar/top]
+;------------------------------;
+;          dimensions          ;
+;------------------------------;
+width = 100%
+height = 22
+offset-y = 0
+offset-x = 0
+
+border-size = 0
+line-size = 1
+
+;-------------------------;
+;          fonts          ;
+;-------------------------;
+font-0 = FontAwesome5Free:style=Solid:pixelsize=9
+font-1 = FontAwesome5Brands:style=Solid:pixelsize=9
+font-2 = Inconsolata:pixelsize=11
+font-3 = overpass:pixelsize=11
+
+;--------------------------;
+;          colors          ;
+;--------------------------;
+line-color = #f00
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-color = #001f0
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+;---------------------------------;
+;          miscellaneous          ;
+;---------------------------------;
+monitor = ${env:MONITOR:}
+
+underline-size = 2
+overline-size = 2
+
+spacing = 0
+padding-right = 0
+module-margin-right = 1
+padding-left = 0
+module-margin-left = 0
+
+tray-position = right
+tray-padding = 1
+tray-backgroud = ${colors.background}
+
+#modules-left =  i3
+#modules-center = date separator time-india separator time-est
+#modules-right = bright separator volume separator battery separator
+
+modules-left = i3
+modules-center = date separator time-est separator time-india
+modules-right = temperature separator memory separator volume separator bright separator battery separator
+
+[module/battery-combined-shell]
+; Not working...
+type = custom/script
+exec = ~/.config/polybar/battery-combined-shell.sh
+interval = 10
+
+[module/notification-github]
+type = custom/script
+exec = ~/.config/polybar/notification-github.sh
+interval = 60
+
+[module/cpufreq]
+type = custom/script
+exec = cpupower frequency-info -fm | grep -oP '(?<=frequency: )([^ ]+ [^ ]+)'
+interval = 2
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = ${colors.background}
+
+[module/volume]
+type = internal/volume
+format-volume = <ramp-volume> <label-volume>
+format-volume-underline = ${colors.fifth}
+format-muted-underline = ${colors.fifth}
+label-volume-foreground = ${colors.foreground}
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = mute
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+;sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = false
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume>  <label-volume>
+format-volume-underline = ${colors.fifth}
+format-muted-underline = ${colors.fifth}
+
+label-muted = muted
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/menu-apps]
+type = custom/menu
+; If true, <label-toggle> will be to the left of the menu items (default).
+; If false, it will be on the right of all the items.
+expand-right = true
+; "menu-LEVEL-N" has the same properties as "label-NAME" with
+; the additional "exec" property
+;
+; Available exec commands:
+;   menu-open-LEVEL
+;   menu-close
+; Other commands will be executed using "/usr/bin/env sh -c $COMMAND"
+menu-0-0 = Browsers
+menu-0-0-exec = menu-open-1
+menu-0-1 = Multimedia
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = Firefox
+menu-1-0-exec = firefox &
+menu-1-1 = Chromium
+menu-1-1-exec = chromium &
+
+menu-2-0 = Gimp
+menu-2-0-exec = gimp &
+menu-2-1 = Scrot
+menu-2-1-exec = scrot &
+; Available tags:
+;   <label-toggle> (default) - gets replaced with <label-(open|close)>
+;   <menu> (default)
+;format = <label-toggle> <menu>
+label-open = Apps
+label-close = x
+; Optional item separator
+; Default: none
+label-separator = |
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+interval = 10
+fixed-values = true
+spacing = 4
+format-mounted = <label-mounted> <bar-used>
+
+label-mounted = /
+
+bar-used-width = 30
+bar-used-foreground-0 = #aaff77
+bar-used-foreground-1 = #aaff77
+bar-used-foreground-2 = #fba922
+bar-used-foreground-3 = #ff5555
+bar-used-indicator = |
+bar-used-indicator-font = 6
+bar-used-indicator-foreground = #ff
+bar-used-fill = ─
+bar-used-fill-font = 6
+bar-used-empty = ─
+bar-used-empty-font = 6
+bar-used-empty-foreground = #444444
+
+[module/bright]
+type = custom/script
+format = <label>
+format-underline = ${colors.third}
+exec = light -b | cut -f1 -d"."
+label =  %output%%
+scroll-up = light -A 5
+scroll-down = light -U 5
+interval = 10
+
+[module/username]
+type = custom/script
+exec = whoami
+format=    <label>
+#format-underline = ${colors.primary}
+format-prefix = "🖧 "
+format-prefix-foreground = #5b
+
+[module/i3]
+type = internal/i3
+; Only show workspaces defined on the same output as the bar
+; Useful if you want to show monitor specific workspaces
+; on different bars
+pin-workspaces = true
+
+; This will split the workspace name on ':'
+strip-wsnumbers = true
+
+; Sort the workspaces by index instead of the default
+; sorting that groups the workspaces by output
+index-sort = true
+
+; Create click handler used to focus workspace
+enable-click = true
+
+; Create scroll handlers used to cycle workspaces
+enable-scroll = false
+
+; Wrap around when reaching the first/last workspace
+; Default: true
+wrapping-scroll = false
+
+; Set the scroll cycle direction
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces
+; containing 'code' in the label
+fuzzy-match = true
+;#########################################################
+; Available tags:
+;   <label-state> (default) - gets replaced with <label-(focused|unfocused|visible|urgent)>
+;   <label-mode> (default)
+format = <label-state> <label-mode>
+
+label-mode-padding = 1
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
+
+
+label-unfocused-padding = 1
+
+label-visible-background = ${colors.background-alt}
+label-visible-underline = label-focused-underline= ${colors.primary}
+label-visible-padding = 1
+
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.fifth}
+label =: %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-underline = ${colors.fourth}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 1
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline =
+;format-connected-underline = ${colors.primary}
+label-connected = %essid%   %downspeed%  %upspeed%
+;label-connected =  :%downspeed% :%upspeed%
+
+
+format-disconnected ="   Not Connected"
+format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = #ffffff
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+format-connected-underline = ${colors.primary}
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =  "  %a, %b %d"
+;date-alt = " %a, %b %d, %Y at %I:%M%p"
+;date-alt = " %Y-%m-%d"
+
+;time = "   %I:%M%p"
+;time-alt = %H:%M:%S
+;time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.second}
+
+label = %date%
+
+[module/time-india]
+type = custom/script
+format-underline = ${colors.third}
+exec = TZ=Asia/Kolkata date +"%I:%M%P"
+interval = 30
+
+[module/time-est]
+type = custom/script
+format-underline = ${colors.fourth}
+exec = TZ=America/New_York date +"%I:%M%P"
+interval = 30
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 97
+
+#format-charging = Charging... <label-charging>
+format-charging =  <animation-charging> <label-charging>
+format-charging-underline = ${colors.second}
+
+#format-discharging = BAT: <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%%
+time-format = %k:%M
+format-discharging-underline = ${colors.second}
+
+#format-full
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${colors.fourth}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+ramp-capacity-0-foreground = #f53c3c
+ramp-capacity-1-foreground = #ffff00
+ramp-capacity-2-foreground = #9acd32
+ramp-capacity-3-foreground = #9acd32
+ramp-capacity-4-foreground = #008000
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-framerate = 750
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format =  :<ramp> <label>
+format-underline = ${colors.second}
+format-warn =  :<ramp> <label-warn>
+format-warn-underline = ${colors.second}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.alert}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
+
+
+[module/powermenu]
+type = custom/menu
+expand-left = true
+
+format-spacing = 1
+label-open = 
+label-open-foreground = #f90000
+label-close = cancel
+label-close-foreground = #f90000
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = init 0
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+format-padding = 1
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 4
+margin-bottom = 4
+
+; vim:ft=dosini

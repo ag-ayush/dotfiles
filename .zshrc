@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="bureau"
+ZSH_THEME="dallas"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -83,6 +83,11 @@ source $ZSH/oh-my-zsh.sh
 
 eval $(thefuck --alias)
 
+PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+export GEM_HOME=$HOME/.gem
+
+export CSSSH=axg4975@argonaut.cs.rit.edu
+export DBSSH=axg4975@reddwarf.cs.rit.edu
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -94,5 +99,6 @@ eval $(thefuck --alias)
 alias weather="curl wttr.in/new_delhi"
 alias grayscalepdf="echo gs -sOutputFile=output.pdf -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.4 -dNOPAUSE -dBATCH file.pdf"
 alias cowsay="fortune -s | cowsay -f /usr/share/cows/tux.cow"
+alias cdwork="cd OneDrive/RIT/Y2S1"
+bash$ timeto() { python -c "from datetime import date as d; print (d($1, $2, $3) - d.today())" }
 
-bash$ timeto() { python -c "from datetime import date as d; print (d($1, $2, $3)) - d.today()" }
