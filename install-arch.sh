@@ -22,7 +22,7 @@ mkdir $HOME/.config
 mkdir $HOME/Pictures
 mkdir $HOME/Pictures/screenshots
 
-sudo pacman -S compton feh scrot i3-gaps rofi firefox atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm nodejs wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite
+sudo pacman -S compton feh scrot i3-gaps rofi chromium atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm nodejs wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite
 
 # following install ttf-*
 pacman -S `pacman -Ss ttf | cut -d/ -f2 | grep ^ttf | cut -d' ' -f1`
