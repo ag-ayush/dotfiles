@@ -1,0 +1,24 @@
+<!-- rofi.theme: .cache/wal/colors-rofi-dark.rasi -->
+rofi.modi: 		drun,calc,window
+rofi.show-icons:	true
+rofi.sidebar-mode:	true
+rofi.padding:		40
+rofi.eh:		2
+rofi.lines:		4
+rofi.font: 		FontAwesome 14
+! 			'background', 'border', 'separator'
+rofi.color-window:	#CC000000 , #f5f5f5 , #CC000000
+! State: 		'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
+rofi.color-normal: 	#00000000, #939393, #00000000, #00000000, #f5f5f5
+rofi.fake-transparency:	true
+rofi.scroll-method:	1
+rofi.no-show-match:	true
+rofi.matching:		normal
+!	1 2 3
+!	8 0 4
+!	7 6 5
+rofi.location:		0
+rofi.window-format:	{c} {t}
+rofi.display-drun:	
+rofi.display-window:	
+rofi.display-calc: 

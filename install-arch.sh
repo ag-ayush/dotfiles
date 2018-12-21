@@ -22,7 +22,7 @@ mkdir $HOME/.config
 mkdir $HOME/Pictures
 mkdir $HOME/Pictures/screenshots
 
-sudo pacman -S compton feh scrot i3-gaps rofi rofi-calc firefox atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm nodejs wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese
+sudo pacman -S compton feh scrot i3-gaps rofi firefox atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm nodejs wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite
 
 # following install ttf-*
 pacman -S `pacman -Ss ttf | cut -d/ -f2 | grep ^ttf | cut -d' ' -f1`
@@ -41,27 +41,23 @@ cd $LOCATION
 git clone https://github.com/pipeseroni/pipes.sh.git
 cd $LOCATION/pipes.sh
 sudo make install
-# Brightness
-cd $LOCATION
-git clone https://github.com/haikarainen/light.git
-cd $LOCATION/light
-sudo make
-sudo make install
 # yaourt
 cd $LOCATION
-git clone https://aur.archlinux.org/package-query.git
-cd package-query/
+git clone https://aur.archlinux.org/yay.git
+cd yay
 makepkg -si
+# Onedrive
 cd $LOCATION
-git clone https://aur.archlinux.org/yaourt.git
-cd yaourt/
-makepkg -si
+git clone https://github.com/skilion/onedrive.git
+cd onedrive
+make
+sudo make install
 # Polybar
-yaourt polybar
+yay polybar
 # i3lock-color
-yaourt i3lock-color
+yay i3lock-color
 # slack
-yaourt slack
+yay slack
 # cli-visualizer
 cd $LOCATION
 git clone https://github.com/dpayne/cli-visualizer.git
@@ -76,10 +72,12 @@ make ENABLE_PULSE=1
 ###############################################################################
 rm $HOME/.zshrc
 cp $LOCATION/dotfiles/.zshrc $HOME/
-cp -r $LOCATION/dotfiles/$THEME/i3 $HOME/.config/
-cp -r $LOCATION/dotfiles/$THEME/polybar/ $HOME/.config/
-cp -r $LOCATION/dotfiles/$THEME/rofi/ $HOME/.config/
-cp -r $LOCATION/dotfiles/$THEME/terminator/ $HOME/.config/
+cp -r $LOCATION/dotfiles/dunst $HOME/.config/
+cp -r $LOCATION/dotfiles/i3 $HOME/.config/
+cp -r $LOCATION/dotfiles/polybar/ $HOME/.config/
+cp -r $LOCATION/dotfiles/ranger $HOME/.config/
+cp -r $LOCATION/dotfiles/rofi/ $HOME/.config/
+cp -r $LOCATION/dotfiles/terminator/ $HOME/.config/
 cp -r $LOCATION/dotfiles/neofetch/ $HOME/.config/
 cp -r $LOCATION/dotfiles/vis/ $HOME/.config/
 
@@ -89,4 +87,5 @@ cp -r $LOCATION/dotfiles/vis/ $HOME/.config/
 #
 ###############################################################################
 mkdir $HOME/Pictures/Wallpapers
-cp night-city-theme/minimalist-cities-romain-trystram.jpg $HOME/Pictures/Wallpapers/
+cd $LOCATION
+cp -r wallpaper/ $HOME/Pictures/Wallpapers/
