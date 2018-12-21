@@ -7,7 +7,8 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="fishy"
+ZSH_THEME="nicoulaj"
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -85,9 +86,7 @@ eval $(thefuck --alias)
 PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 export GEM_HOME=$HOME/.gem
 
-(cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
-
+export CSSSH=axg4975@argonaut.cs.rit.edu
 export DBSSH=axg4975@reddwarf.cs.rit.edu
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -101,9 +100,5 @@ alias weather="curl wttr.in/new_delhi"
 alias grayscalepdf="echo gs -sOutputFile=output.pdf -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.4 -dNOPAUSE -dBATCH file.pdf"
 alias cowsay="fortune -s | cowsay -f /usr/share/cows/tux.cow"
 alias cdwork="cd OneDrive/RIT/Y2S1"
-alias makemake="gcc -ggdb -std=c99 -Wall -Wextra -pedantic HeapADT.c -o HeapADT"
-alias argo="ssh axg4975@argonaut.cs.rit.edu"
-alias glados="ssh axg4975@glados.cs.rit.edu"
-alias reddwarf="ssh axg4975@reddwarf.cs.rit.edu"
-alias vi="vim"
 bash$ timeto() { python -c "from datetime import date as d; print (d($1, $2, $3) - d.today())" }
+
