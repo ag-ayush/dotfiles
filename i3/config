@@ -98,7 +98,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system lock
-bindsym $mod+Shift+z exec exec $HOME/.config/i3/lock.sh
+bindsym $mod+Shift+z exec exec $HOME/.config/i3/lock2.sh
 
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -112,10 +112,13 @@ bindsym $mod+Shift+z exec exec $HOME/.config/i3/lock.sh
 # Make screenshots
 bindsym Print exec scrot '%F--%H-%M-%S.jpg' -q 100 -e 'mv $f ~/Pictures/screenshots/'
 
-# Pulse Audio controls
+# Pulse Audio / Player controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 #bindsym XF86AudioMicMute exec
 
 # Sreen brightness controls
@@ -242,7 +245,7 @@ set $shutdown notify-send "SYSTEM: Powering off..." \
  && systemctl poweroff
 
 mode "$mode_system" {
-    bindsym l      	exec $HOME/.config/i3/lock.sh
+    bindsym l      	exec $HOME/.config/i3/lock2.sh
     bindsym e      	exec i3-msg exit
     bindsym s      	exec $sleep
     bindsym q      	exec $quick_hib
@@ -282,9 +285,10 @@ for_window [class="^.*"] border pixel 4
 #
 ###############################################################################
 exec chromium
-exec --no-startup-id compton --vsync drm
+exec --no-startup-id compton
 exec --no-startup-id dunst
 exec xrandr --auto
+exec redshift
 
 ###############################################################################
 #
@@ -294,7 +298,7 @@ exec xrandr --auto
 exec_always nm-applet --no-startup-id
 exec_always blueman-applet --no-startup-id
 exec_always start-pulseaudio-x11 --no-startup-id
-exec_always --no-startup-id wal -i $HOME/Pictures/Wallpapers/sunset.jpg
+# exec_always --no-startup-id wal -i $HOME/Pictures/Wallpapers/sunset.jpg
 
 ###############################################################################
 #

@@ -11,18 +11,16 @@
 #
 ###############################################################################
 LOCATION="$HOME/git/linux"
-read -p "Theme (arch-tron-theme, $THEME): "  THEME
 
 ###############################################################################
 #
 # Pacman Installations
 #
 ###############################################################################
-mkdir $HOME/.config
-mkdir $HOME/Pictures
-mkdir $HOME/Pictures/screenshots
-
-sudo pacman -S compton feh scrot i3-gaps rofi chromium atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm nodejs wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite
+#mkdir $HOME/.config
+#mkdir $HOME/Pictures
+#mkdir $HOME/Pictures/screenshots
+sudo pacman -S compton feh scrot i3-gaps rofi chromium atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite cpupower acpi playerctl redshift
 
 # following install ttf-*
 pacman -S `pacman -Ss ttf | cut -d/ -f2 | grep ^ttf | cut -d' ' -f1`
@@ -52,12 +50,8 @@ git clone https://github.com/skilion/onedrive.git
 cd onedrive
 make
 sudo make install
-# Polybar
-yay polybar
-# i3lock-color
-yay i3lock-color
-# slack
-yay slack
+# Yay installs
+yay polybar-git i3lock-color slack libreoffice rofi-calc ttf-font-awesome 
 # cli-visualizer
 cd $LOCATION
 git clone https://github.com/dpayne/cli-visualizer.git
