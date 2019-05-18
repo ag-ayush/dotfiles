@@ -1,13 +1,13 @@
 <!-- rofi.theme: .cache/wal/colors-rofi-dark.rasi -->
-rofi.modi: 		drun,calc,window
+rofi.modi: 		    drun,calc
 rofi.show-icons:	true
 rofi.sidebar-mode:	true
-rofi.padding:		40
+rofi.padding:		25
 rofi.eh:		2
 rofi.lines:		4
-rofi.font: 		FontAwesome 14
+rofi.font: 		overpass-mono-regular 12
 ! 			'background', 'border', 'separator'
-rofi.color-window:	#CC000000 , #f5f5f5 , #CC000000
+rofi.color-window:	#CC000000 , #CC000000 , #CC000000
 ! State: 		'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
 rofi.color-normal: 	#00000000, #939393, #00000000, #00000000, #f5f5f5
 rofi.fake-transparency:	true
@@ -22,3 +22,4 @@ rofi.window-format:	{c} {t}
 rofi.display-drun:	
 rofi.display-window:	
 rofi.display-calc: 
+rofi.width: 35

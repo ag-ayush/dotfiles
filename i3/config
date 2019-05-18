@@ -98,7 +98,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # system lock
-bindsym $mod+Shift+z exec exec $HOME/.config/i3/lock2.sh
+bindsym $mod+Shift+z exec exec betterlockscreen -l dimblur
 
 # exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -212,11 +212,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Widow Colours
-#                         border  	background 	text    	indicator
-  client.focused          $focused 	$focused    	$focused-text 	$indicator
-  client.focused_inactive $unfocused 	$unfocused    	$unfocused-text $indicator
-  client.unfocused        $unfocused 	$unfocused    	$unfocused-text $indicator
-  client.urgent           $unfocused 	$urgent-back   	$urgent-text 	$indicator
+#                       border  	background 	    text    	    indicator
+client.focused          $focused    $focused    	$focused-text 	$indicator
+client.focused_inactive $unfocused 	$unfocused    	$unfocused-text $indicator
+client.unfocused        $unfocused 	$unfocused    	$unfocused-text $indicator
+client.urgent           $unfocused 	$urgent-back   	$urgent-text 	$indicator
 
 
 ###############################################################################
@@ -229,29 +229,17 @@ bindsym $mod+r mode "resize"
 bindsym $mod+Shift+e mode "$mode_system"
 
 # log out prompt
-set $mode system (l)ock, (e)logout, hybrid (s)leeping, (r)eboot, Shift+(s)hutdown
-
-set $sleep notify-send "SYSTEM: Hybrid Sleeping..." \
- && systemctl hybrid-sleep && i3lock, mode "default"
-
-set $quick_hib notify-send "SYSTEM: **quick** Hibernating **quick**..." \
- && systemctl hibernate, mode "default"
-
-set $hibernate i3lock && notify-send "SYSTEM: Hibernating..." \
- && systemctl hibernate, mode "default"
+set $mode system (l)ock, (e)logout, (r)eboot, (s)hutdown
 
 set $reboot notify-send "SYSTEM: Rebooting..." && systemctl reboot
 set $shutdown notify-send "SYSTEM: Powering off..." \
  && systemctl poweroff
 
 mode "$mode_system" {
-    bindsym l      	exec $HOME/.config/i3/lock2.sh
+    bindsym l      	exec betterlockscreen -l dimblur
     bindsym e      	exec i3-msg exit
-    bindsym s      	exec $sleep
-    bindsym q      	exec $quick_hib
-    bindsym h      	exec $hibernate
     bindsym r      	exec $reboot
-    bindsym Shift+s	exec $shutdown
+    bindsym s	    exec $shutdown
     bindsym Return      mode "default"
     bindsym Escape      mode "default"
 }
@@ -270,25 +258,26 @@ bar{
 # WINDOW GAPS [i3-gaps]
 #
 ###############################################################################
-gaps inner 7
-gaps outer 7
-smart_borders on
-# smart_gaps on
+gaps inner      4
+gaps outer      5
+smart_borders   on
+smart_gaps      on
+# hide_edge_borders       smart
+# default_floating_border none
+for_window [class="^.*"] border pixel 2
 
-for_window [class="^.*"] border pixel 4
-
-#hide_edge_borders both
 
 ###############################################################################
 #
 # STARTUP
 #
 ###############################################################################
-exec chromium
+exec firefox 
 exec --no-startup-id compton
 exec --no-startup-id dunst
 exec xrandr --auto
-exec redshift
+exec redshift-gtk
+exec libinput-gestures-setup start
 
 ###############################################################################
 #

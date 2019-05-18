@@ -100,10 +100,13 @@ export DBSSH=axg4975@reddwarf.cs.rit.edu
 alias weather="curl wttr.in/new_delhi"
 alias grayscalepdf="echo gs -sOutputFile=output.pdf -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.4 -dNOPAUSE -dBATCH file.pdf"
 alias cowsay="fortune -s | cowsay -f /usr/share/cows/tux.cow"
-alias cdwork="cd OneDrive/RIT/Y2S1"
-alias makemake="gcc -ggdb -std=c99 -Wall -Wextra -pedantic HeapADT.c -o HeapADT"
-alias argo="ssh axg4975@argonaut.cs.rit.edu"
-alias glados="ssh axg4975@glados.cs.rit.edu"
+alias cdwork="cd OneDrive/RIT/Y2S2"
+alias argo="ssh -Y axg4975@argonaut.cs.rit.edu"
+alias glados="ssh -Y axg4975@glados.cs.rit.edu"
 alias reddwarf="ssh axg4975@reddwarf.cs.rit.edu"
 alias vi="vim"
+alias dictionary="sdcv"
 bash$ timeto() { python -c "from datetime import date as d; print (d($1, $2, $3) - d.today())" }
+function cs () {
+    cd "$@" && ls
+}

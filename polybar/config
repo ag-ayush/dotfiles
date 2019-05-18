@@ -298,14 +298,19 @@ label = %date%
 [module/time-india]
 type = custom/script
 ; format-underline = ${colors.third}
-exec = TZ=Asia/Kolkata date +"%I:%M%P"
+exec = TZ=Asia/Kolkata date +"%H:%M IST"
 interval = 30
 
+[module/time-pst]
+type = custom/script
+; format-underline = ${colors.third}
+exec = TZ=Asia/Los_Angeles date +"%H:%M PST"
+interval = 30
 
 [module/time-est]
 type = custom/script
 ; format-underline = ${colors.fourth}
-exec = TZ=America/New_York date +"%I:%M%P"
+exec = TZ=America/New_York date +"%H:%M EST"
 interval = 30
 
 

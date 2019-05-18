@@ -20,14 +20,14 @@ LOCATION="$HOME/git/linux"
 #mkdir $HOME/.config
 #mkdir $HOME/Pictures
 #mkdir $HOME/Pictures/screenshots
-sudo pacman -S compton feh scrot i3-gaps rofi chromium atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa nemo nemo-fileroller neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite cpupower acpi playerctl redshift
+sudo pacman -S compton feh scrot i3-gaps rofi chromium atom zsh zsh-autosuggestions zsh-completions git python-pip lxappearance neofetch openvpn cowsay fortune-mod vlc terminator npm wget yajl pulseaudio pulseaudio-alsa pulseaudio-bluetooth arandr blueman bluez-utils gparted mplayer mesa thunar neovim networkmanager network-manager-applet p7zip ranger sshfs xf86-input-libinput xf86-video-intel xorg-server xorg-server-common xorg-twm xorg-xclock xorg-xinit xorg-xev xterm glances gimp mpv ruby nodejs vim dunst steam openssh cheese light dlang sqlite cpupower acpi playerctl redshift
 
 # following install ttf-*
-pacman -S `pacman -Ss ttf | cut -d/ -f2 | grep ^ttf | cut -d' ' -f1`
+# pacman -S `pacman -Ss ttf | cut -d/ -f2 | grep ^ttf | cut -d' ' -f1`
 
 sudo pip3 install -r $LOCATION/dotfiles/requirements.txt
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-apm install markdown-preview-plus teletype pdf-view latex language-latex atom-prettify
+# apm install markdown-preview-plus teletype pdf-view latex language-latex atom-prettify
 
 ###############################################################################
 #
@@ -39,7 +39,7 @@ cd $LOCATION
 git clone https://github.com/pipeseroni/pipes.sh.git
 cd $LOCATION/pipes.sh
 sudo make install
-# yaourt
+# yay
 cd $LOCATION
 git clone https://aur.archlinux.org/yay.git
 cd yay
@@ -50,7 +50,7 @@ git clone https://github.com/skilion/onedrive.git
 cd onedrive
 make
 sudo make install
-# Yay installs
+# yay installs
 yay polybar-git i3lock-color slack libreoffice rofi-calc ttf-font-awesome 
 # cli-visualizer
 cd $LOCATION
@@ -80,6 +80,6 @@ cp -r $LOCATION/dotfiles/vis/ $HOME/.config/
 # Wallpaper
 #
 ###############################################################################
-mkdir $HOME/Pictures/Wallpapers
-cd $LOCATION
-cp -r wallpaper/ $HOME/Pictures/Wallpapers/
+# mkdir $HOME/Pictures/Wallpapers
+# cd $LOCATION
+# cp -r wallpaper/ $HOME/Pictures/Wallpapers/
